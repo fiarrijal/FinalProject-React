@@ -1,0 +1,30 @@
+.header-user {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.header-user-text {
+	color: var(--darkGrey);
+	line-height: 1.2rem !important;
+}
+
+.user-name {
+	font-weight: 600;
+	font-size: 0.875rem;
+	margin-bottom: 1px;
+}
+
+.user-title {
+	font-size: 0.75rem;
+}
+
+.header-image-container {
+	margin-left: 1rem;
+}
+
+.user-image {
+	border-radius: 50%;
+	max-width: 45px;
+	max-height: 45px;
+}
