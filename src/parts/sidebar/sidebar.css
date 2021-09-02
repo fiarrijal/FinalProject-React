@@ -34,14 +34,20 @@
 	background: #fff;
 }
 
-/* .menu-item {
-	color: var(--darkGrey);
-} */
-
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center !important;
+	padding-right: 20px !important;
+}
 .header-left {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+}
+
+.header-right {
+	margin-bottom: 12px;
 }
 
 .header-title {

@@ -1,0 +1,22 @@
+h3.jdl-ar {
+	font-weight: bold;
+}
+
+.box-card {
+	border-radius: 8px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.b-example-divider {
+	height: 2rem;
+	background-color: none;
+}
+
+.myImage {
+	height: 150px;
+}
+
+.right-position {
+	justify-content: right;
+	align-items: right;
+}
