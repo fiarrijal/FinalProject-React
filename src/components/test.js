@@ -1,7 +1,7 @@
 import React from "react";
 
 function test() {
-	return <div></div>;
+	return <div>ganbate senpai</div>;
 }
 
 export default test;
