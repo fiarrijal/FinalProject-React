@@ -45,7 +45,7 @@ class CardArticle extends React.Component {
 		const { expandIconPosition } = this.state;
 		return (
 			<>
-				<div className="card-colaps">
+				<div className="card-colaps" style={{ marginBottom: "1.5rem" }}>
 					<Collapse className="box-card" defaultActiveKey={["1"]} expandIconPosition={expandIconPosition}>
 						<Panel className="" header={jdlArtikel()} key="1">
 							<Row>

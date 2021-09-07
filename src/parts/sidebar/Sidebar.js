@@ -8,7 +8,7 @@ import NoteIcon from "@material-ui/icons/Note";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Logo from "../../assets/images/logo.svg";
 import UserDropdown from "../../components/UserDropdown/UserDropdown";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const { Header, Sider, Content } = Layout;
 
@@ -36,25 +36,25 @@ class Sidebar extends React.Component {
 						</div>
 						<Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
 							<Menu.Item key="1" icon={<HomeFilled />} className="menu-item">
-								Beranda
+								<Link to="/member/beranda-artikel">Beranda</Link>
 							</Menu.Item>
 							<Menu.Item key="2" icon={<PlusSquareFilled />}>
-								Buat Project Baru
+								<Link to="/member/buat-project">Buat Project Baru</Link>
 							</Menu.Item>
 							<Menu.Item key="3" icon={<FolderFilled />}>
-								Project Saya
+								<Link to="/member/project-saya">Project Saya</Link>
 							</Menu.Item>
 							<Menu.Item key="4" icon={<EmailIcon style={{ fontSize: 16 }} />}>
-								Undangan Kolaborasi
+								<Link to="/member/undangan">Undangan Kolaborasi </Link>
 							</Menu.Item>
 							<Menu.Item key="5" icon={<CreateIcon style={{ fontSize: 16 }} />}>
-								Post Artikel
+								<Link to="/member/post-artikel">Post Artikel </Link>
 							</Menu.Item>
 							<Menu.Item key="6" icon={<NoteIcon style={{ fontSize: 16 }} />}>
-								Artikel Saya
+								<Link to="/member/artikel-saya">Artikel Saya </Link>
 							</Menu.Item>
 							<Menu.Item key="7" icon={<ExitToAppIcon style={{ fontSize: 16 }} />}>
-								Sign Out
+								<Link to="/">Sign Out</Link>
 							</Menu.Item>
 						</Menu>
 					</Sider>
