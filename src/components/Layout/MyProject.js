@@ -32,7 +32,9 @@ function MyProjectCard(props) {
 					{description}
 				</Descriptions.Item>
 				<Descriptions.Item span={24} label="Link Trello">
-					{link}
+					<a href={link} target="_blank" rel="noreferrer">
+						{link}
+					</a>
 				</Descriptions.Item>
 				<Descriptions.Item span={24} label="Kolaborator">
 					{collaborator}
