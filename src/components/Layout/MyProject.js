@@ -1,37 +1,41 @@
 import React from "react";
 import { Descriptions, Button, Card } from "antd";
+import ProjectData from "../../data/ProjectData";
 
 function MyProject() {
 	return (
 		<div>
-			<MyProjectCard />
-			<MyProjectCard />
-			<MyProjectCard />
+			<h2>Project Saya</h2>
+			{ProjectData.filter((data) => data.admin === `Yusuf`).map((filtered) => {
+				const { kategori, nama, tanggal, deskripsi, linkTrello, kolaborator } = filtered;
+				return <MyProjectCard category={kategori} name={nama} date={tanggal} description={deskripsi} link={linkTrello} collaborator={kolaborator.map((col) => `${col}, `)} />;
+			})}
 		</div>
 	);
 }
 
-function MyProjectCard() {
+function MyProjectCard(props) {
+	const { category, name, date, description, collaborator, link } = props;
 	return (
 		<Card style={{ marginBottom: "1.5rem" }}>
-			<Descriptions bordered title="Custom Size" size="small" extra={<Button type="primary">Edit</Button>}>
+			<Descriptions bordered size="small" extra={<Button type="primary">Edit</Button>}>
 				<Descriptions.Item label="Kategori Project" span={24}>
-					Sosial & Kemanusiaan
+					{category}
 				</Descriptions.Item>
 				<Descriptions.Item span={24} label="Nama Project">
-					Bangun Sekolah Gratis
+					{name}
 				</Descriptions.Item>
 				<Descriptions.Item span={24} label="Tanggal Mulai">
-					17 Juli 2021
+					{date}
 				</Descriptions.Item>
 				<Descriptions.Item span={24} label="Deskripsi Project">
-					Sekolah merupakan ......
+					{description}
 				</Descriptions.Item>
 				<Descriptions.Item span={24} label="Link Trello">
-					https://trello.com/
+					{link}
 				</Descriptions.Item>
 				<Descriptions.Item span={24} label="Kolaborator">
-					spongebob@gmail.com, patrick@gmail.com
+					{collaborator}
 				</Descriptions.Item>
 			</Descriptions>
 		</Card>

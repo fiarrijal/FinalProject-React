@@ -1,17 +1,14 @@
 import React from "react";
-import { Layout, Popover, Button, Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { Layout } from "antd";
+import "./sidebar.css";
+
+import UserDropdown from "components/UserDropdown/UserDropdown";
 
 const { Header } = Layout;
 function Head() {
 	return (
-		<Header className="site-layout-background" style={{ padding: 0 }}>
-			<Popover placement="bottom" trigger="hover">
-				<button style={{ height: 64, border: "none", backgroundColor: "transparent" }}>
-					<Avatar style={{ backgroundColor: "#87d068" }} icon={<UserOutlined />} />
-					<span>Marni</span>
-				</button>
-			</Popover>
+		<Header className="site-layout-background" style={{ paddingLeft: "1rem", paddingRight: "1rem", backgroundColor: "#fff", display: "flex", alignItems: "center", flexFlow: "row-reverse" }}>
+			<UserDropdown />
 		</Header>
 	);
 }

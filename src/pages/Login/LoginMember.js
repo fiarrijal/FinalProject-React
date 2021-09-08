@@ -3,6 +3,7 @@ import { Card, Form, Input, Button, Checkbox, Row, Col, Divider } from "antd";
 import Logo from "../../assets/images/logo.svg";
 import "./Login.css";
 import { FacebookFilled, GoogleCircleFilled } from "@ant-design/icons";
+import { useHistory } from "react-router-dom";
 
 function LoginMember() {
 	const onFinish = (values) => {
@@ -12,6 +13,8 @@ function LoginMember() {
 	const onFinishFailed = (errorInfo) => {
 		console.log("Failed:", errorInfo);
 	};
+	const history = useHistory();
+	const handleOnClick = () => history.push("/member");
 
 	return (
 		<div style={{ display: "flex", alignItems: "center" }}>
@@ -72,7 +75,7 @@ function LoginMember() {
 					</Form.Item>
 
 					<Form.Item className="form-item">
-						<Button type="primary" htmlType="submit" className="btn-login-submit">
+						<Button type="primary" htmlType="submit" className="btn-login-submit" onClick={handleOnClick}>
 							Login
 						</Button>
 					</Form.Item>

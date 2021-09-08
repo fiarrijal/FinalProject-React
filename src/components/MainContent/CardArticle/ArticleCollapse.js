@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Collapse, Row, Col } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import img1 from "../../assets/images/books.jpeg";
+import img1 from "assets/images/books.jpeg";
+import "./articleCollapse.css";
 
 const { Panel } = Collapse;
 const text = `
@@ -17,11 +18,11 @@ const text = `
 const jdlArtikel = () => (
 	<Row>
 		<Col flex="auto">
-			<h5 style={{ color: "grey" }}>Design </h5>
-			<h3 className="jdl-ar">Pembiayaan Nasabah</h3>
+			<h5 style={{ color: "grey" }}>Sosial & Kemanusiaan</h5>
+			<h3 className="jdl-ar">Kisah Inspiratif Kak Ghufron Berbagi Bubur</h3>
 			<hr></hr>
-			<h5 style={{ color: "grey" }}>02 Nov 21 </h5>
-			<h5 style={{ color: "grey" }}>Pevita Pearce </h5>
+			<h5 style={{ color: "grey" }}>17 Juli 2021</h5>
+			<h5 style={{ color: "grey" }}>Sandy</h5>
 		</Col>
 		<Col flex="10px">
 			<span>
@@ -36,30 +37,32 @@ const jdlArtikel = () => (
 	</Row>
 );
 
-class CardArticle extends React.Component {
-	state = {
-		expandIconPosition: "right",
-	};
+function CardArticle() {
+	const [expandIconPosition] = useState("right");
 
-	render() {
-		const { expandIconPosition } = this.state;
-		return (
-			<>
-				<div className="card-colaps" style={{ marginBottom: "1.5rem" }}>
-					<Collapse className="box-card" defaultActiveKey={["1"]} expandIconPosition={expandIconPosition}>
-						<Panel className="" header={jdlArtikel()} key="1">
-							<Row>
-								<Col flex="1 1 200px">{text}</Col>
-								<Col flex="0 1 300px">
-									<img className="myImage" src={img1} alt="image1" />
-								</Col>
-							</Row>
-						</Panel>
-					</Collapse>
-				</div>
-			</>
-		);
-	}
+	return (
+		<div className="card-colaps" style={{ marginBottom: "1.5rem" }}>
+			<Collapse className="box-card" defaultActiveKey={["1"]} expandIconPosition={expandIconPosition}>
+				<Panel className="" header={jdlArtikel()} key="1">
+					<Row>
+						<Col flex="1 1 200px">{text}</Col>
+						<Col flex="0 1 300px">
+							<img className="myImage" src={img1} alt="image1" />
+						</Col>
+					</Row>
+				</Panel>
+			</Collapse>
+		</div>
+	);
 }
 
-export default CardArticle;
+function ArticleCollapse() {
+	return (
+		<div>
+			<CardArticle />
+			<CardArticle />
+			<CardArticle />
+		</div>
+	);
+}
+export default ArticleCollapse;

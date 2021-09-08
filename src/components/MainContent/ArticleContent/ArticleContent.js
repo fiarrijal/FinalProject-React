@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import CardArticle from "../../components/CardArticle/CardArticle";
-import { SearchOutlined, MailOutlined, AppstoreOutlined } from "@ant-design/icons";
-import { Button, Row, Col, Menu, Input } from "antd";
+import ArticleCollapse from "../CardArticle/ArticleCollapse";
+import { MailOutlined, AppstoreOutlined } from "@ant-design/icons";
+import { Row, Col, Menu, Input } from "antd";
 import { Link, Route } from "react-router-dom";
-import ProjectCollapse from "../ProjectCollapse/ProjectCollapse";
+import ProjectCollapse from "../ProjectCollapse";
 
 const { Search } = Input;
 
@@ -36,7 +36,7 @@ function ArticleContent() {
 			</Row>
 
 			<div style={{ paddingTop: "2rem" }}>
-				<Route path="/member/beranda/artikel" exact component={CardArticle} />
+				<Route path="/member/beranda/artikel" exact component={ArticleCollapse} />
 
 				<Route path="/member/beranda/project" exact component={ProjectCollapse} />
 			</div>

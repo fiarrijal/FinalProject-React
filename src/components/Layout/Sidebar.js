@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import "antd/dist/antd.css";
 import { Layout, Menu } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { HomeFilled, PlusSquareFilled, FolderFilled } from "@ant-design/icons";
 import EmailIcon from "@material-ui/icons/Email";
 import CreateIcon from "@material-ui/icons/Create";
 import NoteIcon from "@material-ui/icons/Note";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import Logo from "../../assets/images/logo.svg";
 const { Sider } = Layout;
+
+function LogOut() {
+	const history = useHistory();
+
+	return <div onClick={() => history.push("/")}>Sign Out</div>;
+}
 
 function Sidebar() {
 	const [collapsed, setCollapsed] = useState(false);
@@ -15,10 +21,13 @@ function Sidebar() {
 	const onCollapse = (collapsed) => {
 		collapsed ? setCollapsed(true) : setCollapsed(false);
 	};
+
 	return (
-		<Sider theme="dark" width={240} collapsible collapsed={collapsed} onCollapse={onCollapse}>
-			<div className="logo" />
-			<Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+		<Sider theme="light" width={240} collapsible collapsed={collapsed} onCollapse={onCollapse} className="sidebar">
+			<div className="logo">
+				<img src={Logo} alt="logo" className="logo-image" style={{ width: "50%" }} />
+			</div>
+			<Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
 				<Menu.Item key="1" icon={<HomeFilled />} className="menu-item">
 					<Link to="/member/beranda/">Beranda</Link>
 				</Menu.Item>
@@ -38,7 +47,7 @@ function Sidebar() {
 					<Link to="/member/artikel-saya">Artikel Saya </Link>
 				</Menu.Item>
 				<Menu.Item key="7" icon={<ExitToAppIcon style={{ fontSize: 16 }} />}>
-					<Link to="/">Sign Out</Link>
+					<LogOut />
 				</Menu.Item>
 			</Menu>
 		</Sider>
