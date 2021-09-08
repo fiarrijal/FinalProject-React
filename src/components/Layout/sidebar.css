@@ -1,0 +1,28 @@
+.header {
+	padding: 0 1rem;
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+	flex-flow: right;
+}
+
+.sidebar {
+	box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+	height: 32px;
+	margin: 16px;
+	background: rgba(255, 255, 255, 0.3);
+	display: flex;
+	justify-content: center;
+}
+
+.site-layout .site-layout-background {
+	background: #fff;
+}
+[data-theme="dark"] .site-layout .site-layout-background {
+	background: #141414;
+}

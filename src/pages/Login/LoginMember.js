@@ -1,8 +1,9 @@
 import React from "react";
-import { Card, Form, Input, Button, Checkbox, Row, Col } from "antd";
+import { Card, Form, Input, Button, Checkbox, Row, Col, Divider } from "antd";
 import Logo from "../../assets/images/logo.svg";
 import "./Login.css";
 import { FacebookFilled, GoogleCircleFilled } from "@ant-design/icons";
+import { useHistory } from "react-router-dom";
 
 function LoginMember() {
 	const onFinish = (values) => {
@@ -12,6 +13,8 @@ function LoginMember() {
 	const onFinishFailed = (errorInfo) => {
 		console.log("Failed:", errorInfo);
 	};
+	const history = useHistory();
+	const handleOnClick = () => history.push("/member");
 
 	return (
 		<div style={{ display: "flex", alignItems: "center" }}>
@@ -72,18 +75,22 @@ function LoginMember() {
 					</Form.Item>
 
 					<Form.Item className="form-item">
-						<Button type="primary" htmlType="submit" className="btn-login-submit">
+						<Button type="primary" htmlType="submit" className="btn-login-submit" onClick={handleOnClick}>
 							Login
 						</Button>
 					</Form.Item>
 				</Form>
-				<p style={{ textAlign: "center", marginTop: 16 }}>atau login dengan</p>
+				<Divider>atau login dengan</Divider>
 				<Row>
 					<Col md={12}>
-						<Button icon={<GoogleCircleFilled />}>Google</Button>
+						<Button type="primary" style={{ backgroundColor: "red", borderColor: "red" }} icon={<GoogleCircleFilled />}>
+							Google
+						</Button>
 					</Col>
 					<Col md={12}>
-						<Button icon={<FacebookFilled />}>Facebook</Button>
+						<Button type="primary" icon={<FacebookFilled />}>
+							Facebook
+						</Button>
 					</Col>
 				</Row>
 			</Card>

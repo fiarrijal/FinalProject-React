@@ -1,21 +1,21 @@
+import { BrowserRouter, Route } from "react-router-dom";
+import "antd/dist/antd.css";
 import "./App.css";
 
-import AddClass from "./pages/addClass/AddClass";
-import ArticlePage from "./pages/articlePage/ArticlePage";
-import ProjectHome from "./pages/Home/ProjectHome";
 import LoginAdmin from "./pages/Login/LoginAdmin";
 import LoginMember from "./pages/Login/LoginMember";
-import Register from "./pages/Login/Register";
+import DashboardMember from "./pages/Dashboard/DashboardMember";
+import DashboardAdmin from "./pages/Dashboard/DashboardAdmin";
 
 function App() {
 	return (
-		<div className="App">
-			{/* <AddClass /> */}
-			<LoginMember></LoginMember>
-			{/* <LoginAdmin /> */}
-			{/* <ArticlePage /> */}
-			{/* <Register /> */}
-			{/* <ProjectHome /> */}
+		<div>
+			<BrowserRouter>
+				<Route path="/" exact component={LoginMember} />
+				<Route path="/login-admin" exact component={LoginAdmin} />
+				<Route path="/member" component={DashboardMember} />
+				<Route path="/admin-dashboard" exact component={DashboardAdmin} />
+			</BrowserRouter>
 		</div>
 	);
 }
