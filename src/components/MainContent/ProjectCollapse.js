@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Collapse } from "antd";
 import { Avatar } from "antd";
 import { AntDesignOutlined } from "@ant-design/icons";
-import ProjectData from "data/ProjectData";
+import axios from "axios";
 
 const { Panel } = Collapse;
 
 function ProjectCollapse() {
+	const [projects, setProjects] = useState([]);
+
+	const getProject = async () => {
+		try {
+			const response = await axios.get("project");
+			const data = await response.data;
+			setProjects(data);
+		} catch (e) {
+			console.log(e);
+			setProjects([]);
+		}
+	};
+
+	useEffect(() => {
+		getProject();
+	}, []);
+
+	console.log("Data aps nich?", projects);
+
 	return (
 		<div>
-			{ProjectData.map((data) => {
-				const { id, kategori, nama, tanggal, deskripsi } = data;
-				return <ProjectCard key={id} name={nama} category={kategori} date={tanggal} description={deskripsi} />;
+			{projects.map((project) => {
+				const { id_project, nama_project, deskripsi_project, kategori_project, tanggal_mulai } = project;
+				return <ProjectCard key={id_project} name={nama_project} category={kategori_project} date={tanggal_mulai} description={deskripsi_project} />;
 			})}
 		</div>
 	);
