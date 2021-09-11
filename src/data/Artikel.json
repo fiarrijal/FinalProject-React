@@ -1,0 +1,22 @@
+{
+	"status": 200,
+	"message": "berhasil",
+	"data": [
+		{
+			"id_artikel": 1,
+			"posting_date": "01/08/2021",
+			"kategori": "Go Green",
+			"judul": "Menanam Kaktus",
+			"isi_artikel": "Teks isi artikel",
+			"id_user": 1
+		},
+		{
+			"id_artikel": 2,
+			"posting_date": "01/08/2021",
+			"kategori": "Go Green",
+			"judul": "Menanam Kaktus",
+			"isi_artikel": "Teks isi artikel",
+			"id_user": 1
+		}
+	]
+}
