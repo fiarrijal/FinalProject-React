@@ -1,4 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 @import "~antd/dist/antd.css";
+
+html {
+	font-family: "Nunito", sans-serif;
+}
+
+body {
+	font-size: 16px;
+}
 
 :root {
 	--first-color: #0d6efd;
@@ -6,6 +15,4 @@
 	--white-color: #f7f6fb;
 	--lightGrey: #bbbbbb;
 	--darkGrey: #9796a9;
-	--body-font: "Nunito", sans-serif;
-	--normal-font-size: 1rem;
 }
