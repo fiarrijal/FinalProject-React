@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Button, Collapse } from "antd";
+import { Button, Collapse, Typography, Switch, Row, Col, Space } from "antd";
 import { Avatar } from "antd";
 import { AntDesignOutlined } from "@ant-design/icons";
 import axios from "axios";
+import CollabData from "data/ProjectData";
+
+const { Paragraph, Text } = Typography;
 
 const { Panel } = Collapse;
 
 function ProjectCollapse() {
 	const [projects, setProjects] = useState([]);
-
 	const getProject = async () => {
 		try {
 			const response = await axios.get("project");
@@ -19,13 +21,10 @@ function ProjectCollapse() {
 			setProjects([]);
 		}
 	};
-
 	useEffect(() => {
 		getProject();
 	}, []);
-
 	console.log("Data aps nich?", projects);
-
 	return (
 		<div>
 			{projects.map((project) => {
@@ -34,10 +33,23 @@ function ProjectCollapse() {
 			})}
 		</div>
 	);
+
+	// return (
+	// 	<div>
+	// 		{CollabData.map((data) => {
+	// 			return <ProjectCard key={data.id} name={data.nama} date={data.tanggal} description={data.deskripsi} category={data.kategori} />;
+	// 		})}
+	// 	</div>
+	// );
 }
 
 function ProjectCard(props) {
 	const { name, category, date, description } = props;
+	const [ellipsis, setEllipsis] = useState(true);
+
+	const mb = 16;
+
+	console.log(ellipsis);
 
 	return (
 		<div>
@@ -50,37 +62,48 @@ function ProjectCard(props) {
 						marginBottom: 10,
 					}}
 				>
-					<p>
-						<b>{category}</b>
-					</p>
-					<p>{date}</p>
-					<p></p>
-					<br />
-					<p>
-						<b>Deskripsi</b> <br />
-						{description}
-					</p>
-					<br />
-					<Avatar
-						style={{
-							backgroundColor: "#f56a00",
-						}}
-					></Avatar>
-					<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-					<Avatar
-						style={{
-							backgroundColor: "#1890ff",
-						}}
-						icon={<AntDesignOutlined />}
-					/>
-					<hr></hr>
-					<Button type="primary" shape="round">
-						(+) Collaborator
-					</Button>{" "}
-					<span />
-					<Button type="disabled" shape="round">
-						(x) Delete
-					</Button>
+					<Row style={{ marginBottom: mb }}>
+						<Col span={6}>Kategori</Col>
+						<Col span={1}>:</Col>
+						<Col span={17} style={{ fontWeight: "Bold" }}>
+							{category}
+						</Col>
+					</Row>
+					<Row style={{ marginBottom: mb }}>
+						<Col span={6}>Tanggal Mulai</Col>
+						<Col span={1}>:</Col>
+						<Col span={17}>{date}</Col>
+					</Row>
+					<Row style={{ marginBottom: mb }}>
+						<Col span={6}>Deskripsi</Col>
+						<Col span={1}>:</Col>
+						<Col span={17}>
+							<Paragraph ellipsis={ellipsis}>{description}</Paragraph>
+							<Row>
+								<Col span={24} style={{ display: "flex", flexFlow: "row-reverse" }}>
+									<button onClick={() => setEllipsis(!ellipsis)}>{ellipsis ? "Read More" : "Read Less"}</button>
+								</Col>
+							</Row>
+						</Col>
+					</Row>
+					<Row style={{ marginBottom: mb }}>
+						<Col span={6}>Kontributor</Col>
+						<Col span={1}>:</Col>
+						<Col span={17}>
+							<Avatar
+								style={{
+									backgroundColor: "#f56a00",
+								}}
+							></Avatar>
+							<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+							<Avatar
+								style={{
+									backgroundColor: "#1890ff",
+								}}
+								icon={<AntDesignOutlined />}
+							/>
+						</Col>
+					</Row>
 				</Panel>
 			</Collapse>
 		</div>
