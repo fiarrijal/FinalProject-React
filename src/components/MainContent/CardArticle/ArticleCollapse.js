@@ -4,8 +4,37 @@ import { DeleteOutlined } from "@ant-design/icons";
 import img1 from "assets/images/books.jpeg";
 import "./articleCollapse.css";
 import axios from "axios";
+import { useQuery } from "react-query";
+import { Fragment } from "react";
 
 const { Panel } = Collapse;
+
+async function getArticle() {
+	const response = await axios.get("artikel");
+	return response;
+}
+
+function ArticleCollapse() {
+	const { data, status } = useQuery("artikel", getArticle);
+	const isiData = data;
+	console.log(isiData);
+	console.log(status);
+
+	return (
+		<div>
+			{status === "loading" && <div> Loading Data</div>}
+			{status === "error" && <div> Error Fetching Data</div>}
+			{status === "success" && (
+				<div>
+					{isiData.data.map((isi) => {
+						const { id_artikel, posting_date, kategori, judul, isi_artikel, id_user } = isi;
+						return <CardArticle key={id_artikel} kategori={kategori} judul={judul} tanggal={posting_date} user={id_user} isi_artikel={isi_artikel} />;
+					})}
+				</div>
+			)}
+		</div>
+	);
+}
 
 function CardArticle(props) {
 	const jdlArtikel = () => (
@@ -33,7 +62,7 @@ function CardArticle(props) {
 	return (
 		<div className="card-colaps" style={{ marginBottom: "1.5rem" }}>
 			<Collapse className="box-card" defaultActiveKey={["1"]} expandIconPosition="right">
-				<Panel className="" header={jdlArtikel()} key={props.key}>
+				<Panel className="" header={jdlArtikel()}>
 					<Row>
 						<Col flex="1 1 200px">{props.isi_artikel}</Col>
 						<Col flex="0 1 300px">
@@ -42,35 +71,6 @@ function CardArticle(props) {
 					</Row>
 				</Panel>
 			</Collapse>
-		</div>
-	);
-}
-
-function ArticleCollapse() {
-	const [article, setArticle] = useState([]);
-
-	const getArticle = async () => {
-		try {
-			const response = await axios.get("list_artikel");
-			const data = response.data;
-			setArticle(data);
-		} catch (error) {
-			console.log(error);
-			setArticle([]);
-		}
-	};
-
-	useEffect(() => {
-		getArticle();
-	}, []);
-
-	console.log(`ada data apa nich?`, article);
-
-	return (
-		<div>
-			{article.map((data) => {
-				return <CardArticle key={data.id_artikel} kategori={data.kategori} judul={data.judul} tanggal={data.posting_date} user={data.admin} isi_artikel={data.isi_artikel} />;
-			})}
 		</div>
 	);
 }

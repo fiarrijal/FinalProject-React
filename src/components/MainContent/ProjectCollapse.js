@@ -1,46 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { Button, Collapse, Typography, Switch, Row, Col, Space } from "antd";
+import { Button, Collapse, Typography, Switch, Row, Col, Space, Card } from "antd";
 import { Avatar } from "antd";
 import { AntDesignOutlined } from "@ant-design/icons";
 import axios from "axios";
 import CollabData from "data/ProjectData";
+import { useQuery } from "react-query";
 
 const { Paragraph, Text } = Typography;
 
 const { Panel } = Collapse;
 
+async function getProject() {
+	const response = await axios.get("project");
+	return response;
+}
+
 function ProjectCollapse() {
-	const [projects, setProjects] = useState([]);
-	const getProject = async () => {
-		try {
-			const response = await axios.get("project");
-			const data = await response.data;
-			setProjects(data);
-		} catch (e) {
-			console.log(e);
-			setProjects([]);
-		}
-	};
-	useEffect(() => {
-		getProject();
-	}, []);
-	console.log("Data aps nich?", projects);
+	const { data, status } = useQuery("project", getProject);
+	const isiData = data;
+	console.log(isiData);
+	console.log(status);
+
 	return (
 		<div>
-			{projects.map((project) => {
-				const { id_project, nama_project, deskripsi_project, kategori_project, tanggal_mulai } = project;
-				return <ProjectCard key={id_project} name={nama_project} category={kategori_project} date={tanggal_mulai} description={deskripsi_project} />;
-			})}
+			{status === "loading" && <div> Loading Data</div>}
+			{status === "error" && <div> Error Fetching Data</div>}
+			{status === "success" && (
+				<div>
+					{isiData.data.map((isi) => {
+						const { id_project, kategori_project, nama_project, tanggal_mulai, link_trello, deskripsi_project, invited_user_id, collaborator_user_id, admin } = isi;
+
+						return <ProjectCard key={id_project} category={kategori_project} name={nama_project} date={tanggal_mulai} description={deskripsi_project} />;
+					})}
+				</div>
+			)}
 		</div>
 	);
-
-	// return (
-	// 	<div>
-	// 		{CollabData.map((data) => {
-	// 			return <ProjectCard key={data.id} name={data.nama} date={data.tanggal} description={data.deskripsi} category={data.kategori} />;
-	// 		})}
-	// 	</div>
-	// );
 }
 
 function ProjectCard(props) {

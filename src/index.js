@@ -3,23 +3,29 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter } from "react-router-dom";
 
-axios.defaults.baseURL = "https://b919a564-1891-4805-b107-e898f6cd91a2.mock.pstmn.io";
+axios.defaults.baseURL = "http://localhost:8080";
 axios.defaults.headers.get["Accept"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
 
 axios.interceptors.response.use(
-	({ data }: AxiosResponse) => {
-		return data;
-	},
+	({ data }: AxiosResponse) => data,
 	(error: any) => {
 		console.log("something wrong! ", error);
 	}
 );
 
+const queryClient = new QueryClient();
+
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<BrowserRouter>
+			<QueryClientProvider client={queryClient}>
+				<App />
+			</QueryClientProvider>
+		</BrowserRouter>
 	</React.StrictMode>,
 	document.getElementById("root")
 );
