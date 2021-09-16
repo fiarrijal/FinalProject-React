@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Form, Input, Button, Row, Col, Select } from "antd";
 import Logo from "../../assets/images/logo.svg";
 import "./Login.css";
 import { FacebookFilled, GoogleCircleFilled } from "@ant-design/icons";
+import { nanoid } from "nanoid";
+import axios from "axios";
 
 const { Option } = Select;
 
 function Register() {
+	const [fullName, setFullName] = useState("");
+	const [username, setUserName] = useState("");
+	const [password, setPassword] = useState("");
+	const [password2, setPassword2] = useState("");
+	const [kategoriProject, setKategoriProject] = useState("");
+
+	const dataMauDiPush = {
+		id: nanoid(16),
+		tanggal_registrasi: new Date().toISOString(),
+		nama_lengkap: fullName,
+		username: username,
+		password: password,
+		topik_diminati: [kategoriProject],
+		enrollment_status: 0,
+		role_id: 1,
+	};
+
+	const addData = () => {
+		const response = axios.post("user", dataMauDiPush);
+		return response;
+	};
+
 	const onFinish = (values) => {
 		console.log("Success:", values);
 	};
@@ -45,7 +69,7 @@ function Register() {
 							},
 						]}
 					>
-						<Input />
+						<Input onChange={(e) => setFullName(e.target.value)} value={fullName} />
 					</Form.Item>
 					<Form.Item
 						className="form-item"
@@ -58,7 +82,7 @@ function Register() {
 							},
 						]}
 					>
-						<Input />
+						<Input onChange={(e) => setUserName(e.target.value)} value={username} />
 					</Form.Item>
 
 					<Form.Item
@@ -72,7 +96,7 @@ function Register() {
 							},
 						]}
 					>
-						<Input.Password />
+						<Input.Password onChange={(e) => setPassword(e.target.value)} value={password} />
 					</Form.Item>
 					<Form.Item
 						className="form-item"
@@ -85,7 +109,7 @@ function Register() {
 							},
 						]}
 					>
-						<Input.Password />
+						<Input.Password onChange={(e) => setPassword2(e.target.value)} value={password2} />
 					</Form.Item>
 
 					<Form.Item
@@ -104,15 +128,17 @@ function Register() {
 							optionFilterProp="children"
 							filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 							filterSort={(optionA, optionB) => optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())}
+							value={kategoriProject}
+							onChange={(value) => setKategoriProject(value)}
 						>
-							<Option value="1">Pengembangan Teknologi</Option>
-							<Option value="2">Go Green</Option>
-							<Option value="3">Sosial & Kemanusiaan</Option>
+							<Option value="Pengembangan Teknologi">Pengembangan Teknologi</Option>
+							<Option value="Go Green">Go Green</Option>
+							<Option value="Sosial & Kemanusiaan">Sosial & Kemanusiaan</Option>
 						</Select>
 					</Form.Item>
 
 					<Form.Item className="form-item">
-						<Button type="primary" htmlType="submit" className="btn-login-submit">
+						<Button type="primary" htmlType="submit" className="btn-login-submit" onClick={addData}>
 							Register
 						</Button>
 					</Form.Item>

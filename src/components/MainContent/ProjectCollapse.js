@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Button, Collapse, Typography, Switch, Row, Col, Space, Card } from "antd";
+import React, { useState } from "react";
+import { Collapse, Typography, Row, Col } from "antd";
 import { Avatar } from "antd";
 import { AntDesignOutlined } from "@ant-design/icons";
 import axios from "axios";
-import CollabData from "data/ProjectData";
 import { useQuery } from "react-query";
 
-const { Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
 const { Panel } = Collapse;
 
@@ -27,7 +26,7 @@ function ProjectCollapse() {
 			{status === "error" && <div> Error Fetching Data</div>}
 			{status === "success" && (
 				<div>
-					{isiData.data.map((isi) => {
+					{isiData.map((isi) => {
 						const { id_project, kategori_project, nama_project, tanggal_mulai, link_trello, deskripsi_project, invited_user_id, collaborator_user_id, admin } = isi;
 
 						return <ProjectCard key={id_project} category={kategori_project} name={nama_project} date={tanggal_mulai} description={deskripsi_project} />;

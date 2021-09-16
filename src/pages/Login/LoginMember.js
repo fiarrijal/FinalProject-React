@@ -4,8 +4,45 @@ import Logo from "../../assets/images/logo.svg";
 import "./Login.css";
 import { FacebookFilled, GoogleCircleFilled } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
+import { useQuery } from "react-query";
+import axios from "axios";
+import { useState } from "react";
+import { setUserSession } from "data/util";
+
+async function getUser() {
+	const response = await axios.get("user");
+	return response;
+}
 
 function LoginMember() {
+	//Obtaining email & password value from input
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	// fetching data user
+	const { data, status } = useQuery("user", getUser);
+
+	const history = useHistory();
+
+	//Login Function
+	const handleLogin = () => {
+		data.forEach((isi) => {
+			if (isi.username === email && isi.password === password) {
+				const { id, nama_lengkap, role_id } = isi;
+				setUserSession({ id, nama_lengkap, role_id });
+				if (isi.role_id === 1) {
+					history.push("/admin-dashboard");
+				} else if (isi.role_id === 2) {
+					history.push("/member");
+				} else {
+					console.log(`Salah boy`);
+				}
+			} else {
+				alert(`Username & password tidak sesuai`);
+			}
+		});
+	};
+
 	const onFinish = (values) => {
 		console.log("Success:", values);
 	};
@@ -13,8 +50,6 @@ function LoginMember() {
 	const onFinishFailed = (errorInfo) => {
 		console.log("Failed:", errorInfo);
 	};
-	const history = useHistory();
-	const handleOnClick = () => history.push("/member");
 
 	return (
 		<div style={{ display: "flex", alignItems: "center" }}>
@@ -45,7 +80,12 @@ function LoginMember() {
 							},
 						]}
 					>
-						<Input />
+						<Input
+							value={email}
+							onChange={(e) => {
+								setEmail(e.target.value);
+							}}
+						/>
 					</Form.Item>
 
 					<Form.Item
@@ -59,7 +99,12 @@ function LoginMember() {
 							},
 						]}
 					>
-						<Input.Password />
+						<Input.Password
+							value={password}
+							onChange={(e) => {
+								setPassword(e.target.value);
+							}}
+						/>
 					</Form.Item>
 
 					<Form.Item
@@ -75,7 +120,7 @@ function LoginMember() {
 					</Form.Item>
 
 					<Form.Item className="form-item">
-						<Button type="primary" htmlType="submit" className="btn-login-submit" onClick={handleOnClick}>
+						<Button type="primary" htmlType="submit" className="btn-login-submit" onClick={handleLogin}>
 							Login
 						</Button>
 					</Form.Item>

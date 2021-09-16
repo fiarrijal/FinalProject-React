@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Collapse, Row, Col } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import img1 from "assets/images/books.jpeg";
+// import img1 from "assets/images/books.jpeg";
 import "./articleCollapse.css";
 import axios from "axios";
 import { useQuery } from "react-query";
-import { Fragment } from "react";
 
 const { Panel } = Collapse;
 
@@ -26,7 +25,7 @@ function ArticleCollapse() {
 			{status === "error" && <div> Error Fetching Data</div>}
 			{status === "success" && (
 				<div>
-					{isiData.data.map((isi) => {
+					{isiData.map((isi) => {
 						const { id_artikel, posting_date, kategori, judul, isi_artikel, id_user } = isi;
 						return <CardArticle key={id_artikel} kategori={kategori} judul={judul} tanggal={posting_date} user={id_user} isi_artikel={isi_artikel} />;
 					})}
