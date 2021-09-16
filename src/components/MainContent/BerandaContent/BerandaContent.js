@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Table, Tag, Button, Row, Col } from "antd";
+import axios from "axios";
+import { useQuery } from "react-query";
 
 const data = [
 	{
@@ -32,19 +34,18 @@ const data = [
 	},
 ];
 
+function getDataUser() {
+	const response = axios.get("user");
+	return response;
+}
+
 function BerandaContent() {
+	// fetching user data
+	const { data, status } = useQuery("user", getDataUser);
+	console.table(data);
+
 	let [filteredInfo, setFilteredInfo] = useState(null);
 	let [selectedRowKeys, setSelectedRowKeys] = useState([]);
-	// let [loading, setLoading] = useState(false);
-
-	// const start = () => {
-	// 	setLoading(true);
-	// 	// ajax request after empty completing
-	// 	setTimeout(() => {
-	// 		setSelectedRowKeys([]);
-	// 		setLoading(false);
-	// 	}, 1000);
-	// };
 
 	const onSelectChange = (selectedRowKeys) => {
 		console.log("selectedRowKeys changed: ", selectedRowKeys);
@@ -66,28 +67,31 @@ function BerandaContent() {
 	const columns = [
 		{
 			title: "No",
-			dataIndex: "key",
 			width: 70,
 			fixed: "left",
+			render: (data = data) => {
+				for (let i = 0; i <= data.length; i++) {
+					<div>{i}</div>;
+				}
+			},
 		},
 		{
 			title: "Tanggal Registrasi",
-			dataIndex: "date",
-			key: "date",
+			dataIndex: "tanggal_registrasi",
+			key: "tanggal_registrasi",
 		},
 		{
-			title: "Name",
-			dataIndex: "name",
-			key: "name",
-			render: (text) => <a href="/">{text}</a>,
+			title: "Nama",
+			dataIndex: "nama_lengkap",
+			key: "nama_lengkap",
 		},
 		{
 			title: "Topik",
-			key: "tags",
-			dataIndex: "tags",
-			render: (tags) => (
+			key: "topik_diminati",
+			dataIndex: "topik_diminati",
+			render: (topik_diminati) => (
 				<>
-					{tags.map((tag) => {
+					{topik_diminati.map((tag) => {
 						let color = "volcano";
 						if (tag === "Go Green") {
 							color = "green";
@@ -106,11 +110,11 @@ function BerandaContent() {
 		},
 		{
 			title: "Status",
-			dataIndex: "status",
-			key: "status",
+			dataIndex: "enrollment_status",
+			key: "enrollment_status",
 			filters: [
-				{ text: "Menunggu Approval", value: "Menunggu Approval" },
-				{ text: "Approved", value: "Approved" },
+				{ text: "Menunggu Approval", value: "0" },
+				{ text: "Approved", value: "1" },
 			],
 			filteredValue: filteredInfo.status || null,
 			onFilter: (value, record) => record.status.includes(value),

@@ -1,10 +1,26 @@
-import React from "react";
-import { Card, Form, Input, Button, Checkbox, Row, Col } from "antd";
+import React, { useState } from "react";
+import { Card, Form, Button, Checkbox, Row, Col } from "antd";
 import Logo from "../../assets/images/logo.svg";
 import "./Login.css";
 import { FacebookFilled, GoogleCircleFilled } from "@ant-design/icons";
 
+const useFormInput = (initialValue) => {
+	const [value, setValue] = useState(initialValue);
+
+	const handleChange = (e) => {
+		setValue(e.target.value);
+	};
+
+	return {
+		value,
+		onChange: handleChange,
+	};
+};
+
 function LoginAdmin() {
+	const username = useFormInput("");
+	const password = useFormInput("");
+
 	const onFinish = (values) => {
 		console.log("Success:", values);
 	};
@@ -42,7 +58,8 @@ function LoginAdmin() {
 							},
 						]}
 					>
-						<Input />
+						{/* <Input /> */}
+						<input type="text" {...username} autoComplete="new-password" />
 					</Form.Item>
 
 					<Form.Item
@@ -56,7 +73,8 @@ function LoginAdmin() {
 							},
 						]}
 					>
-						<Input.Password />
+						{/* <Input.Password /> */}
+						<input type="password" {...password} autoComplete="new password" />
 					</Form.Item>
 
 					<Form.Item
