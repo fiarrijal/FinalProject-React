@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "antd/dist/antd.css";
 import "./App.css";
 import { Layout } from "antd";
@@ -15,42 +15,54 @@ import MyProject from "components/Layout/MyProject";
 import MyArticle from "components/MainContent/MyArticle";
 import CollabInvitation from "components/Layout/CollabInvitation";
 import Beranda from "components/MainContent/BerandaContent/BerandaContent";
+import DashboardMember from "pages/Dashboard/DashboardMember";
+import { useState } from "react";
+
 const { Content } = Layout;
 
-function App() {
-	if (getUserSession() === null) {
-		return (
-			<div>
-				<Route path="/" exact component={LoginMember} />
-				<Route path="/register" exact component={Register} />
-			</div>
-		);
-	} else {
-		return (
-			<div>
-				<Layout style={{ minHeight: "100vh" }}>
-					<Sidebar />
-					<Layout className="site-layout">
-						<Head />
-						<Content style={{ margin: "16px" }}>
-							<div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-								<Switch>
-									<Route path="/member/beranda" component={ArticleContent} />
-									<Route path="/member/buat-project" exact component={AddClassContent} />
-									<Route path="/member/post-artikel" exact component={PostArticleContent} />
-									<Route path="/member/project-saya" exact component={MyProject} />
-									<Route path="/member/undangan" exact component={CollabInvitation} />
-									<Route path="/member/artikel-saya" exact component={MyArticle} />
-									<Route path="/admin-dashboard" exact component={Beranda} />
-								</Switch>
-							</div>
-						</Content>
-						<FooterComponent />
-					</Layout>
-				</Layout>
-			</div>
-		);
-	}
-}
+export default function App() {
+	//Pengecekan apakah ada data di session storage
+	const isAuth = getUserSession() === null ? false : true;
+	console.log(isAuth);
 
-export default App;
+	const PrivateRoute = ({ children, ...rest }) => {
+		return (
+			<Route
+				{...rest}
+				render={() => {
+					if (isAuth) {
+						return children;
+					} else {
+						return <Redirect to="/login" exact />;
+					}
+				}}
+			/>
+		);
+	};
+
+	return (
+		<BrowserRouter>
+			<div className="App">
+				<Switch>
+					<Route exact path="/">
+						<Redirect to="/login" />
+						<LoginMember />
+					</Route>
+					<Route path="/login">
+						<LoginMember />
+					</Route>
+					<PrivateRoute path="/dashboard">
+						<Layout style={{ minHeight: "100vh" }}>
+							<Sidebar />
+							<Layout className="site-layout">
+								<Head />
+								{/* <Main /> */}
+								<FooterComponent />
+							</Layout>
+						</Layout>
+					</PrivateRoute>
+				</Switch>
+			</div>
+		</BrowserRouter>
+	);
+}

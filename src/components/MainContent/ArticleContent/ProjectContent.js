@@ -7,7 +7,7 @@ import ProjectCollapse from "../ProjectCollapse";
 
 const { Search } = Input;
 
-function ArticleContent() {
+function ProjectContent() {
 	const [current, setCurrent] = useState("mail");
 
 	const handleClick = (e) => {
@@ -36,10 +36,10 @@ function ArticleContent() {
 			</Row>
 
 			<div style={{ paddingTop: "2rem" }}>
-				<ArticleCollapse />
+				<ProjectCollapse />
 			</div>
 		</div>
 	);
 }
 
-export default ArticleContent;
+export default ProjectContent;
