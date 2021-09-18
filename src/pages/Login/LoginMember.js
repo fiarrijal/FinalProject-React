@@ -3,7 +3,7 @@ import { Card, Form, Input, Button, Checkbox, Row, Col, Divider } from "antd";
 import Logo from "../../assets/images/logo.svg";
 import "./Login.css";
 import { FacebookFilled, GoogleCircleFilled } from "@ant-design/icons";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { useState } from "react";
@@ -23,6 +23,8 @@ function LoginMember() {
 	const { data, status } = useQuery("user", getUser);
 
 	const history = useHistory();
+
+	//Login Function
 
 	const onFinish = (values) => {
 		//Cek isi value
@@ -56,7 +58,7 @@ function LoginMember() {
 	return (
 		<div style={{ display: "flex", alignItems: "center" }}>
 			<Card style={{ width: 400 }} className="login-card">
-				<h3 className="login-title">Login Member</h3>
+				<h3 className="login-title">Login</h3>
 				<div className="brand-container">
 					<img src={Logo} alt="brand" className="brand-logo" />
 					<h5 className="brand-text">Banking Innovation CoCreate Platform</h5>
@@ -138,6 +140,11 @@ function LoginMember() {
 						<Button type="primary" icon={<FacebookFilled />}>
 							Facebook
 						</Button>
+					</Col>
+				</Row>
+				<Row style={{ marginTop: 16 }}>
+					<Col span={24} style={{ textAlign: "center" }}>
+						Belum punya akun? <Link to="/register">daftar disini</Link>
 					</Col>
 				</Row>
 			</Card>

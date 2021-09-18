@@ -1,10 +1,9 @@
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import "antd/dist/antd.css";
 import "./App.css";
 import { Layout } from "antd";
 import LoginMember from "./pages/Login/LoginMember";
 import Register from "pages/Login/Register";
-import { getUserSession } from "data/util";
 import Sidebar from "components/Layout/Sidebar";
 import Head from "components/Layout/Head";
 import FooterComponent from "components/Layout/FooterComponent";
@@ -15,54 +14,40 @@ import MyProject from "components/Layout/MyProject";
 import MyArticle from "components/MainContent/MyArticle";
 import CollabInvitation from "components/Layout/CollabInvitation";
 import Beranda from "components/MainContent/BerandaContent/BerandaContent";
-import DashboardMember from "pages/Dashboard/DashboardMember";
-import { useState } from "react";
-
 const { Content } = Layout;
 
-export default function App() {
-	//Pengecekan apakah ada data di session storage
-	const isAuth = getUserSession() === null ? false : true;
-	console.log(isAuth);
-
-	const PrivateRoute = ({ children, ...rest }) => {
-		return (
-			<Route
-				{...rest}
-				render={() => {
-					if (isAuth) {
-						return children;
-					} else {
-						return <Redirect to="/login" exact />;
-					}
-				}}
-			/>
-		);
-	};
-
+function App() {
 	return (
-		<BrowserRouter>
-			<div className="App">
-				<Switch>
-					<Route exact path="/">
-						<Redirect to="/login" />
-						<LoginMember />
-					</Route>
-					<Route path="/login">
-						<LoginMember />
-					</Route>
-					<PrivateRoute path="/dashboard">
-						<Layout style={{ minHeight: "100vh" }}>
-							<Sidebar />
-							<Layout className="site-layout">
-								<Head />
-								{/* <Main /> */}
-								<FooterComponent />
-							</Layout>
-						</Layout>
-					</PrivateRoute>
-				</Switch>
-			</div>
-		</BrowserRouter>
+		<div>
+			<Route path="/" exact>
+				<Redirect to="/login" />
+			</Route>
+			<Route path="/login" component={LoginMember} />
+			<Route path="/register" exact component={Register} />
+			<Route path="/dashboard">
+				<Layout style={{ minHeight: "100vh" }}>
+					<Sidebar />
+					<Layout className="site-layout">
+						<Head />
+						<Content style={{ margin: "16px" }}>
+							<div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+								<Switch>
+									<Route path="/dashboard/member/beranda" component={ArticleContent} />
+									<Route path="/dashboard/member/buat-project" exact component={AddClassContent} />
+									<Route path="/dashboard/member/post-artikel" exact component={PostArticleContent} />
+									<Route path="/dashboard/member/project-saya" exact component={MyProject} />
+									<Route path="/dashboard/member/undangan" exact component={CollabInvitation} />
+									<Route path="/dashboard/member/artikel-saya" exact component={MyArticle} />
+									<Route path="/dashboard/admin/" exact component={Beranda} />
+								</Switch>
+							</div>
+						</Content>
+						<FooterComponent />
+					</Layout>
+				</Layout>
+			</Route>{" "}
+		</div>
 	);
 }
+
+export default App;
