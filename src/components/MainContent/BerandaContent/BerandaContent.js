@@ -2,37 +2,7 @@ import React, { useState } from "react";
 import { Table, Tag, Button, Row, Col } from "antd";
 import axios from "axios";
 import { useQuery } from "react-query";
-
-const data = [
-	{
-		key: "1",
-		name: "John Brown",
-		date: "2014-12-24 23:12:00",
-		status: "Menunggu Approval",
-		tags: ["Go Green"],
-	},
-	{
-		key: "2",
-		name: "Jim Green",
-		date: "2014-12-24 23:12:00",
-		status: "Menunggu Approval",
-		tags: ["Pengembangan Teknologi"],
-	},
-	{
-		key: "3",
-		name: "Joe Black",
-		date: "2014-12-24 23:12:00",
-		status: "Approved",
-		tags: ["Sosial & Kemanusiaan"],
-	},
-	{
-		key: "4",
-		name: "Junary Ahmad",
-		date: "2014-12-24 23:12:00",
-		status: "Approved",
-		tags: ["Sosial & Kemanusiaan"],
-	},
-];
+import { useEffect } from "react";
 
 function getDataUser() {
 	const response = axios.get("user");
@@ -40,12 +10,24 @@ function getDataUser() {
 }
 
 function BerandaContent() {
-	// fetching user data
-	const { data, status } = useQuery("user", getDataUser);
-	console.table(data);
-
 	let [filteredInfo, setFilteredInfo] = useState(null);
 	let [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
+	// fetching user data
+	const { data, status } = useQuery("user", getDataUser);
+
+	// Ganti param object "id" ke "key" agar dapat select per row di table
+	let dataMap = [];
+	if (status === "success") {
+		let i = 0;
+		dataMap = data.map((isi) => {
+			const { id: key, tanggal_registrasi, nama_lengkap, username, password, topik_diminati, enrollment_status, role_id } = isi;
+			const newObj = { key, tanggal_registrasi, nama_lengkap, username, password, topik_diminati, enrollment_status, role_id };
+			return newObj;
+		});
+	}
+
+	useEffect;
 
 	const onSelectChange = (selectedRowKeys) => {
 		console.log("selectedRowKeys changed: ", selectedRowKeys);
@@ -125,7 +107,7 @@ function BerandaContent() {
 	return (
 		<div>
 			<h1>Enrollment Request</h1>
-			<Table rowSelection={rowSelection} columns={columns} dataSource={data} onChange={handleChange} />
+			<Table rowSelection={rowSelection} columns={columns} dataSource={dataMap} onChange={handleChange} />
 			<Row>
 				<Col span={24} style={{ display: "flex", flexFlow: "row-reverse" }}>
 					<Button type="primary" style={{ marginBottom: 16, width: "100%" }}>
