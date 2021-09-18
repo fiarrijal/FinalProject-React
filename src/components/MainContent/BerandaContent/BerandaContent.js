@@ -27,8 +27,6 @@ function BerandaContent() {
 		});
 	}
 
-	useEffect;
-
 	const onSelectChange = (selectedRowKeys) => {
 		console.log("selectedRowKeys changed: ", selectedRowKeys);
 		setSelectedRowKeys(selectedRowKeys);

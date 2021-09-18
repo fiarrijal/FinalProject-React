@@ -131,46 +131,5 @@
       "admin": 2
     }
   ],
-  "artikel": [
-    {
-      "id": 1,
-      "posting_date": "01/08/2021",
-      "kategori": "Go Green",
-      "judul": "Menanam Kaktus",
-      "isi_artikel": "Teks isi artikel",
-      "id_user": 1
-    },
-    {
-      "id": 2,
-      "posting_date": "01/08/2021",
-      "kategori": "Pengembangan Teknologi",
-      "judul": "Menanam Kaktus Tanpa Biji",
-      "isi_artikel": "Tanam-tanam ubi Tak perlu dibaja Orang berbudi Kita berbahasa Naik kereta api Turun padang tembak Kalau tak hati-hati Kita kan terjebak. Semarakkan hari ini Kita nyanyi ramai-ramai Goyang badan gerak kaki Laungkan lagu damai Jangan ambil mudah Jangan rasa mudah Menang bukan kekal Kalah jangan kesal Hati masih muda Tenaga pun ada Hidup ada prinsip Ikut tatatertib Yeah yeah yeah yeah yeah Carik bulu ayam Akan bercantum jua Lupakan hal semalam Esok",
-      "id_user": 1
-    },
-    {
-      "id": 3,
-      "posting_date": "01/08/2021",
-      "kategori": "Pengembangan Teknologi",
-      "judul": "Judul aja",
-      "isi_artikel": "Tanam-tanam ubi Tak perlu dibaja Orang berbudi Kita berbahasa Naik kereta api Turun padang tembak Kalau tak hati-hati Kita kan terjebak. Semarakkan hari ini Kita nyanyi ramai-ramai Goyang badan gerak kaki Laungkan lagu damai Jangan ambil mudah Jangan rasa mudah Menang bukan kekal Kalah jangan kesal Hati masih muda Tenaga pun ada Hidup ada prinsip Ikut tatatertib Yeah yeah yeah yeah yeah Carik bulu ayam Akan bercantum jua Lupakan hal semalam Esok",
-      "id_user": 1
-    },
-    {
-      "id": 4,
-      "posting_date": "01/08/2021",
-      "kategori": "Pengembangan Teknologi",
-      "judul": "Menanam Ubi ",
-      "isi_artikel": "Tanam-tanam ubi Tak perlu dibaja Orang berbudi Kita berbahasa Naik kereta api Turun padang tembak Kalau tak hati-hati Kita kan terjebak. Semarakkan hari ini Kita nyanyi ramai-ramai Goyang badan gerak kaki Laungkan lagu damai Jangan ambil mudah Jangan rasa mudah Menang bukan kekal Kalah jangan kesal Hati masih muda Tenaga pun ada Hidup ada prinsip Ikut tatatertib Yeah yeah yeah yeah yeah Carik bulu ayam Akan bercantum jua Lupakan hal semalam Esok",
-      "id_user": 1
-    },
-    {
-      "id": 5,
-      "posting_date": "01/08/2021",
-      "kategori": "Pengembangan Teknologi",
-      "judul": "Menanam Ubi Pakai Biji Taro",
-      "isi_artikel": "Tanam-tanam ubi Tak perlu dibaja Orang berbudi Kita berbahasa Naik kereta api Turun padang tembak Kalau tak hati-hati Kita kan terjebak. Semarakkan hari ini Kita nyanyi ramai-ramai Goyang badan gerak kaki Laungkan lagu damai Jangan ambil mudah Jangan rasa mudah Menang bukan kekal Kalah jangan kesal Hati masih muda Tenaga pun ada Hidup ada prinsip Ikut tatatertib Yeah yeah yeah yeah yeah Carik bulu ayam Akan bercantum jua Lupakan hal semalam Esok",
-      "id_user": 1
-    }
-  ]
+  "artikel": []
 }

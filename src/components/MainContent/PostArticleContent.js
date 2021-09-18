@@ -1,5 +1,10 @@
 import { Form, Select, Input, Button, Upload } from "antd";
-import { UploadOutlined, InboxOutlined } from "@ant-design/icons";
+// import { UploadOutlined, InboxOutlined } from "@ant-design/icons";
+// import { useState } from "react";
+import { getUserSession } from "data/util";
+import { nanoid } from "nanoid";
+import axios from "axios";
+import { useHistory } from "react-router";
 
 const { Option } = Select;
 const Layout = {
@@ -17,13 +22,33 @@ const normFile = (e) => {
 	if (Array.isArray(e)) {
 		return e;
 	}
-
 	return e && e.fileList;
 };
 
 function PostArticleContent() {
+	// const [id, setId] = useState("");
+	// const [kategori, setKategori] = useState("");
+	// const [judul, setJudul] = useState("");
+	// const [isi, setIsi] = useState("");
+	const history = useHistory();
+
+	const addData = async (value) => {
+		const response = await axios.post("artikel", value);
+		return response;
+	};
+
 	const onFinish = (values) => {
 		console.log("Received values of form: ", values);
+		const dataMauDiPush = {
+			id: nanoid(16),
+			posting_date: new Date().toISOString(),
+			kategori: values.kategori,
+			judul: values.judul,
+			isi_artikel: values.isi_artikel,
+			id_user: getUserSession().id,
+		};
+		addData(dataMauDiPush);
+		history.push("/dashboard/member/artikel-saya");
 	};
 
 	return (
@@ -40,7 +65,7 @@ function PostArticleContent() {
 				}}
 			>
 				<Form.Item
-					name={["user", "kategori"]}
+					name={["kategori"]}
 					label="Kategori"
 					rules={[
 						{
@@ -56,20 +81,20 @@ function PostArticleContent() {
 						filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 						filterSort={(optionA, optionB) => optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())}
 					>
-						<Option value="1">Pengembangan Teknologi</Option>
-						<Option value="2">Go Green</Option>
-						<Option value="3">Sosial & Kemanusiaan</Option>
+						<Option value="Pengembangan Teknologi">Pengembangan Teknologi</Option>
+						<Option value="Go Green">Go Green</Option>
+						<Option value="Sosial & Kemanusiaan">Sosial & Kemanusiaan</Option>
 					</Select>
 				</Form.Item>
 
-				<Form.Item name={["user", "Judul"]} label="Judul">
+				<Form.Item name={["judul"]} label="Judul">
 					<Input />
 				</Form.Item>
-				<Form.Item name={["user", "Isi Artikel"]} label="Isi Artikel">
+				<Form.Item name={["isi_artikel"]} label="Isi Artikel">
 					<Input.TextArea style={{ height: 150 }} />
 				</Form.Item>
 
-				<Form.Item name="upload" label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
+				{/* <Form.Item name="upload" label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
 					<Upload name="logo" action="/upload.do" listType="picture">
 						<Button icon={<UploadOutlined />}>Upload your file</Button>
 					</Upload>
@@ -83,7 +108,7 @@ function PostArticleContent() {
 							<p className="ant-upload-hint">Support for a single or bulk upload.</p>
 						</Upload.Dragger>
 					</Form.Item>
-				</Form.Item>
+				</Form.Item> */}
 
 				<Form.Item wrapperCol={{ ...Layout.wrapperCol, offset: 7 }}>
 					<Button type="primary" htmlType="submit" style={{ background: "orange", borderColor: "orange" }}>

@@ -2,20 +2,27 @@ import React from "react";
 import { Descriptions, Button, Card } from "antd";
 import axios from "axios";
 import { useQuery } from "react-query";
+import { useHistory } from "react-router";
 
 async function getArticle() {
 	const response = await axios.get("artikel");
 	return response;
 }
 
-function deleteArtikel(id) {
-	axios.delete("artikel" + id).then((res) => {
-		console.log(res);
-		getArticle();
-	});
+// function deleteArtikel(id) {
+// 	axios.delete("artikel" + id).then((res) => {
+// 		console.log(res);
+// 		getArticle();
+// 	});
+// }
+
+async function deleteArticle(id) {
+	const response = await axios.delete(`artikel/${id}`);
+	return response;
 }
 
 function MyArticle() {
+	const history = useHistory();
 	const { data, status } = useQuery("artikel", getArticle);
 	const isiData = data;
 	console.log(isiData);
@@ -28,7 +35,20 @@ function MyArticle() {
 				<div>
 					{isiData.map((isi) => {
 						const { id, posting_date, kategori, judul, isi_artikel, id_user } = isi;
-						return <MyArticleCard key={id} kategori={kategori} judul={judul} tanggal={posting_date} user={id_user} isi_artikel={isi_artikel} btn_click={() => {}} />;
+						return (
+							<MyArticleCard
+								key={id}
+								kategori={kategori}
+								judul={judul}
+								tanggal={posting_date}
+								user={id_user}
+								isi_artikel={isi_artikel}
+								btn_click={() => {
+									deleteArticle(id);
+									getArticle();
+								}}
+							/>
+						);
 					})}
 				</div>
 			)}
