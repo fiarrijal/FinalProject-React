@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card, Form, Input, Button, Row, Col, Select } from "antd";
-import Logo from "../../assets/images/logo.svg";
+import { Link } from "react-router-dom";
+import Logo from "assets/images/logo.svg";
 import "./Login.css";
 import { FacebookFilled, GoogleCircleFilled } from "@ant-design/icons";
 import { nanoid } from "nanoid";
@@ -150,6 +151,11 @@ function Register() {
 					</Col>
 					<Col md={12}>
 						<Button icon={<FacebookFilled />}>Facebook</Button>
+					</Col>
+				</Row>
+				<Row style={{ marginTop: 16 }}>
+					<Col span={24} style={{ textAlign: "center" }}>
+						Sudah punya akun? <Link to="/">login disini</Link>
 					</Col>
 				</Row>
 			</Card>

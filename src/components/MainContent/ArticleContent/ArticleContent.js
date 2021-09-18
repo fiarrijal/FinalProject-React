@@ -20,10 +20,10 @@ function ArticleContent() {
 				<Col span={6}>
 					<Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
 						<Menu.Item key="article" icon={<MailOutlined />}>
-							<Link to="/member/beranda/artikel">Artikel</Link>
+							<Link to="/dashboard/member/beranda/artikel">Artikel</Link>
 						</Menu.Item>
 						<Menu.Item key="project" icon={<AppstoreOutlined />}>
-							<Link to="/member/beranda/project">Project</Link>
+							<Link to="/dashboard/member/beranda/project">Project</Link>
 						</Menu.Item>
 					</Menu>
 				</Col>
@@ -36,9 +36,9 @@ function ArticleContent() {
 			</Row>
 
 			<div style={{ paddingTop: "2rem" }}>
-				<Route path="/member/beranda/artikel" exact component={ArticleCollapse} />
+				<Route path="/dashboard/member/beranda/artikel" exact component={ArticleCollapse} />
 
-				<Route path="/member/beranda/project" exact component={ProjectCollapse} />
+				<Route path="/dashboard/member/beranda/project" exact component={ProjectCollapse} />
 			</div>
 		</div>
 	);

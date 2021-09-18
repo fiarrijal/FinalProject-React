@@ -3,7 +3,7 @@ import { Card, Form, Input, Button, Checkbox, Row, Col, Divider } from "antd";
 import Logo from "../../assets/images/logo.svg";
 import "./Login.css";
 import { FacebookFilled, GoogleCircleFilled } from "@ant-design/icons";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { useState } from "react";
@@ -25,26 +25,30 @@ function LoginMember() {
 	const history = useHistory();
 
 	//Login Function
-	const handleLogin = () => {
-		data.forEach((isi) => {
-			if (isi.username === email && isi.password === password) {
-				const { id, nama_lengkap, role_id } = isi;
-				setUserSession({ id, nama_lengkap, role_id });
-				if (isi.role_id === 1) {
-					history.push("/admin-dashboard");
-				} else if (isi.role_id === 2) {
-					history.push("/member");
-				} else {
-					console.log(`Salah boy`);
-				}
-			} else {
-				alert(`Username & password tidak sesuai`);
-			}
-		});
-	};
 
 	const onFinish = (values) => {
+		//Cek isi value
 		console.log("Success:", values);
+
+		// Pengecekan apakah data input sesuai dengan data api. Jika sesuai maka buat array baru &
+		//Memilih data yang disimpan di session storage
+		const filtered = data
+			.filter((isi) => {
+				const a = values.email === isi.username && values.password === isi.password;
+				return a;
+			})
+			.map((filter) => {
+				const { id, nama_lengkap, role_id } = filter;
+				const a = setUserSession({ id, nama_lengkap, role_id });
+				return a;
+			});
+
+		//Pengecekan isi array filtered. Jika ada isinya, maka push ke route profile
+		if (filtered.length) {
+			history.push("/dashboard");
+		} else {
+			alert(`Email & Password tidak match`);
+		}
 	};
 
 	const onFinishFailed = (errorInfo) => {
@@ -54,7 +58,7 @@ function LoginMember() {
 	return (
 		<div style={{ display: "flex", alignItems: "center" }}>
 			<Card style={{ width: 400 }} className="login-card">
-				<h3 className="login-title">Login Member</h3>
+				<h3 className="login-title">Login</h3>
 				<div className="brand-container">
 					<img src={Logo} alt="brand" className="brand-logo" />
 					<h5 className="brand-text">Banking Innovation CoCreate Platform</h5>
@@ -110,7 +114,7 @@ function LoginMember() {
 					<Form.Item
 						className="form-item"
 						name="remember"
-						valuePropName="checked"
+						valuePropName=""
 						// wrapperCol={{
 						// 	offset: 8,
 						// 	span: 16,
@@ -120,7 +124,7 @@ function LoginMember() {
 					</Form.Item>
 
 					<Form.Item className="form-item">
-						<Button type="primary" htmlType="submit" className="btn-login-submit" onClick={handleLogin}>
+						<Button type="primary" htmlType="submit" className="btn-login-submit">
 							Login
 						</Button>
 					</Form.Item>
@@ -136,6 +140,11 @@ function LoginMember() {
 						<Button type="primary" icon={<FacebookFilled />}>
 							Facebook
 						</Button>
+					</Col>
+				</Row>
+				<Row style={{ marginTop: 16 }}>
+					<Col span={24} style={{ textAlign: "center" }}>
+						Belum punya akun? <Link to="/register">daftar disini</Link>
 					</Col>
 				</Row>
 			</Card>

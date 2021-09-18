@@ -41,27 +41,27 @@ function Sidebar() {
 				{getUserSession().role_id === 2 ? (
 					<Fragment>
 						<Menu.Item key="1" icon={<HomeFilled />} className="menu-item">
-							<Link to="/member/beranda/">Beranda</Link>
+							<Link to="/dashboard/member/beranda/">Beranda</Link>
 						</Menu.Item>
 						<Menu.Item key="2" icon={<PlusSquareFilled />}>
-							<Link to="/member/buat-project">Buat Project Baru</Link>
+							<Link to="/dashboard/member/buat-project">Buat Project Baru</Link>
 						</Menu.Item>
 						<Menu.Item key="3" icon={<FolderFilled />}>
-							<Link to="/member/project-saya">Project Saya</Link>
+							<Link to="/dashboard/member/project-saya">Project Saya</Link>
 						</Menu.Item>
 						<Menu.Item key="4" icon={<EmailIcon style={{ fontSize: 16 }} />}>
-							<Link to="/member/undangan">Undangan Kolaborasi </Link>
+							<Link to="/dashboard/member/undangan">Undangan Kolaborasi </Link>
 						</Menu.Item>
 						<Menu.Item key="5" icon={<CreateIcon style={{ fontSize: 16 }} />}>
-							<Link to="/member/post-artikel">Post Artikel</Link>
+							<Link to="/dashboard/member/post-artikel">Post Artikel</Link>
 						</Menu.Item>
 						<Menu.Item key="6" icon={<NoteIcon style={{ fontSize: 16 }} />}>
-							<Link to="/member/artikel-saya">Artikel Saya </Link>
+							<Link to="/dashboard/member/artikel-saya">Artikel Saya </Link>
 						</Menu.Item>
 					</Fragment>
 				) : (
 					<Menu.Item key="1" icon={<UsergroupAddOutlined />} className="menu-item">
-						<Link to="/admin-dashboard">Enrollment Request</Link>
+						<Link to="/dashboard/admin">Enrollment Request</Link>
 					</Menu.Item>
 				)}
 
