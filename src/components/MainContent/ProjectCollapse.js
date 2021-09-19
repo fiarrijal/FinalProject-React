@@ -27,7 +27,7 @@ function ProjectCollapse() {
 			{status === "success" && (
 				<div>
 					{isiData.map((isi) => {
-						const { id_project, kategori_project, nama_project, tanggal_mulai, link_trello, deskripsi_project, invited_user_id, collaborator_user_id, admin } = isi;
+						const { id_project, kategori_project, nama_project, tanggal_mulai, deskripsi_project, invited_user_id, collaborator_user_id, admin } = isi;
 
 						return <ProjectCard key={id_project} category={kategori_project} name={nama_project} date={tanggal_mulai} description={deskripsi_project} />;
 					})}

@@ -1,59 +1,44 @@
 import React, { useState } from "react";
-import { Table, Tag, Button, Row, Col } from "antd";
+import { Table, Tag, Button, Row, Col, Space } from "antd";
 import axios from "axios";
 import { useQuery } from "react-query";
+import { useEffect } from "react";
 
-const data = [
-	{
-		key: "1",
-		name: "John Brown",
-		date: "2014-12-24 23:12:00",
-		status: "Menunggu Approval",
-		tags: ["Go Green"],
-	},
-	{
-		key: "2",
-		name: "Jim Green",
-		date: "2014-12-24 23:12:00",
-		status: "Menunggu Approval",
-		tags: ["Pengembangan Teknologi"],
-	},
-	{
-		key: "3",
-		name: "Joe Black",
-		date: "2014-12-24 23:12:00",
-		status: "Approved",
-		tags: ["Sosial & Kemanusiaan"],
-	},
-	{
-		key: "4",
-		name: "Junary Ahmad",
-		date: "2014-12-24 23:12:00",
-		status: "Approved",
-		tags: ["Sosial & Kemanusiaan"],
-	},
-];
+async function getAllDataUser() {
+	const response = await axios.get("user");
+	return response;
+}
 
-function getDataUser() {
-	const response = axios.get("user");
+async function UpdateEnrollmentUser(id, data) {
+	const response = await axios.put(`user/${id}`, data);
 	return response;
 }
 
 function BerandaContent() {
-	// fetching user data
-	const { data, status } = useQuery("user", getDataUser);
-	console.table(data);
-
 	let [filteredInfo, setFilteredInfo] = useState(null);
 	let [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
+	// fetching user data
+	const { data, status } = useQuery("user", getAllDataUser);
+
+	// Ganti param object "id" ke "key" agar dapat select per row di table
+	let dataMap = [];
+	if (status === "success") {
+		let i = 0;
+		dataMap = data.map((isi) => {
+			const { id: key, tanggal_registrasi, nama_lengkap, username, password, topik_diminati, enrollment_status, role_id } = isi;
+			const newObj = { key, tanggal_registrasi, nama_lengkap, username, password, topik_diminati, enrollment_status, role_id };
+			return newObj;
+		});
+	}
 
 	const onSelectChange = (selectedRowKeys) => {
 		console.log("selectedRowKeys changed: ", selectedRowKeys);
 		setSelectedRowKeys(selectedRowKeys);
 	};
 
-	const handleChange = (pagination, filters) => {
-		// console.log('Various parameters', pagination, filters, sorter);
+	const handleChange = (pagination, filters, sorter) => {
+		console.log("Various parameters", pagination, filters, sorter);
 		setFilteredInfo(filters);
 	};
 
@@ -113,26 +98,61 @@ function BerandaContent() {
 			dataIndex: "enrollment_status",
 			key: "enrollment_status",
 			filters: [
-				{ text: "Menunggu Approval", value: "0" },
-				{ text: "Approved", value: "1" },
+				{ text: "Waiting for Approval", value: "Waiting for Approval" },
+				{ text: "Approved", value: "Approved" },
 			],
 			filteredValue: filteredInfo.status || null,
-			onFilter: (value, record) => record.status.includes(value),
+			onFilter: (value, record) => record.enrollment_status.includes(value),
 			ellipsis: true,
+		},
+		{
+			title: "Action",
+			key: "action",
+			render: (text, record) => (
+				<Space size="middle">
+					<Button
+						type="primary"
+						onClick={() => {
+							if (record.enrollment_status !== "Approved") {
+								UpdateEnrollmentUser(record.key, {
+									id: record.key,
+									tanggal_registrasi: record.tanggal_registrasi,
+									nama_lengkap: record.nama_lengkap,
+									username: record.username,
+									password: record.password,
+									topik_diminati: record.topik_diminati,
+									enrollment_status: "Approved",
+									role_id: record.role_id,
+								});
+								window.location.reload(false);
+							}
+						}}
+					>
+						Approve
+					</Button>
+				</Space>
+			),
 		},
 	];
 
 	return (
 		<div>
 			<h1>Enrollment Request</h1>
-			<Table rowSelection={rowSelection} columns={columns} dataSource={data} onChange={handleChange} />
-			<Row>
+			<Table
+				// rowSelection={rowSelection}
+				columns={columns}
+				dataSource={dataMap}
+				onChange={handleChange}
+			/>
+
+			{/* Tombol untuk approve banyak user sekaligus */}
+			{/* <Row>
 				<Col span={24} style={{ display: "flex", flexFlow: "row-reverse" }}>
 					<Button type="primary" style={{ marginBottom: 16, width: "100%" }}>
 						Approve
 					</Button>
 				</Col>
-			</Row>
+			</Row> */}
 		</div>
 	);
 }

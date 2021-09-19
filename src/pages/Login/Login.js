@@ -14,7 +14,7 @@ async function getUser() {
 	return response;
 }
 
-function LoginMember() {
+export default function Login() {
 	//Obtaining email & password value from input
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -151,5 +151,3 @@ function LoginMember() {
 		</div>
 	);
 }
-
-export default LoginMember;

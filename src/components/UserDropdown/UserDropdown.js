@@ -2,6 +2,7 @@ import React from "react";
 import { Menu, Dropdown, Space } from "antd";
 import UserImage from "../../assets/images/user.jpg";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { getUserSession } from "data/util";
 import "./UserDropdown.css";
 
 export default function UserDropdown() {
@@ -20,7 +21,7 @@ export default function UserDropdown() {
 				<Dropdown overlay={menus} placement="bottomRight">
 					<div className="header-user">
 						<div className="header-user-text">
-							<h3 className="user-name">Fadhil Yusuf</h3>
+							<h3 className="user-name">{getUserSession().nama_lengkap}</h3>
 							<span className="user-title">Engineer</span>
 						</div>
 						<div className="header-image-container">
