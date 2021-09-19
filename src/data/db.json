@@ -13,7 +13,7 @@
     {
       "id": 3,
       "tanggal_registrasi": "",
-      "nama_lengkap": "jancuka",
+      "nama_lengkap": "Admin Tampan",
       "username": "admin",
       "password": "admin",
       "topik_diminati": [
@@ -25,7 +25,7 @@
     {
       "id": 1,
       "tanggal_registrasi": "",
-      "nama_lengkap": "Member",
+      "nama_lengkap": "Member Ga tau diri",
       "username": "member",
       "password": "member",
       "topik_diminati": [
@@ -35,85 +35,13 @@
       "role_id": 2
     },
     {
-      "id": "ZrlJvNsxYH3UJzh7",
-      "tanggal_registrasi": "2021-09-16T13:42:41.634Z",
-      "nama_lengkap": "2021-09-16T13:42:41.634Z",
-      "username": "juki",
-      "password": "juki",
+      "id": "x_Hx9QbhGwul_zoT",
+      "tanggal_registrasi": "19/9/2021 22:3:48",
+      "nama_lengkap": "Mbak Winter",
+      "username": "winteraespa",
+      "password": "winteraespa",
       "topik_diminati": [
         "Go Green"
-      ],
-      "enrollment_status": "Approved",
-      "role_id": 2
-    },
-    {
-      "id": "4mcqGuwIApMyoyzD",
-      "tanggal_registrasi": "2021-09-16T13:43:46.728Z",
-      "nama_lengkap": "2021-09-16T13:43:46.728Z",
-      "username": "arina",
-      "password": "arina",
-      "topik_diminati": [
-        "Sosial & Kemanusiaan"
-      ],
-      "enrollment_status": "Approved",
-      "role_id": 2
-    },
-    {
-      "id": "uOBhY5osPcfnnop4",
-      "tanggal_registrasi": "2021-09-19T11:38:00.102Z",
-      "nama_lengkap": "Bagja",
-      "username": "bagja",
-      "password": "bagja",
-      "topik_diminati": [
-        "Pengembangan Teknologi"
-      ],
-      "enrollment_status": "Approved",
-      "role_id": "Waiting for Approval"
-    },
-    {
-      "id": "kfEmecTFk79OVnd2",
-      "tanggal_registrasi": "2021-09-19T11:39:09.916Z",
-      "nama_lengkap": "Karina",
-      "username": "karina",
-      "password": "karina",
-      "topik_diminati": [
-        "Pengembangan Teknologi"
-      ],
-      "enrollment_status": "Approved",
-      "role_id": 2
-    },
-    {
-      "id": "CppLGM0v_FOszqRK",
-      "tanggal_registrasi": "2021-09-19T11:45:55.445Z",
-      "nama_lengkap": "Ariela",
-      "username": "Ariela",
-      "password": "ariela",
-      "topik_diminati": [
-        "Pengembangan Teknologi"
-      ],
-      "enrollment_status": "Waiting for Approval",
-      "role_id": 2
-    },
-    {
-      "id": "BqW4jZraXgiXiZ9T",
-      "tanggal_registrasi": "2021-09-19T11:46:47.023Z",
-      "nama_lengkap": "Misaki",
-      "username": "misaki",
-      "password": "misai",
-      "topik_diminati": [
-        "Sosial & Kemanusiaan"
-      ],
-      "enrollment_status": "Approved",
-      "role_id": 2
-    },
-    {
-      "id": "H5AIHn3fiBAC8APl",
-      "tanggal_registrasi": "2021-09-19T11:47:28.791Z",
-      "nama_lengkap": "Misaki",
-      "username": "misaki",
-      "password": "misai",
-      "topik_diminati": [
-        "Sosial & Kemanusiaan"
       ],
       "enrollment_status": "Approved",
       "role_id": 2
@@ -171,12 +99,12 @@
   ],
   "artikel": [
     {
-      "id": "_DjjeYCPG-dhuNfh",
-      "posting_date": "2021-09-19T09:13:04.005Z",
-      "kategori": "Go Green",
-      "judul": "Tanam tanam jagung",
-      "isi_artikel": "Ayo kawan kita bersama\nmenanam jagung di kebun kita\nambil cangkulmu, ambil pangkurmu\nkita bekerja tak jemu-jemu\n\ncangkul, cangkul, cangkul yang dalam\ntanah yang longgar jagung kutanam\n\nberi pupuk supaya subur\ntanamkan benih dengan teratur\njagungnya besar lebat buahnya\ntentu berguna bagi semua\n\ncangkul, cangkul, aku gembira\nmenanam jagung di kebun kita",
-      "id_user": 4
+      "id": "lV1o99uxSCggaxyN",
+      "posting_date": "2021-09-19T15:07:37.405Z",
+      "kategori": "Sosial & Kemanusiaan",
+      "judul": "UUD",
+      "isi_artikel": "Atas berkat rakhmat Allah Yang Maha Kuasa dan dengan didorongkan oleh keinginan luhur, supaya berkehidupan kebangsaan yang bebas, maka rakyat Indonesia menyatakan dengan ini kemerdekaannya.",
+      "id_user": 1
     }
   ]
 }

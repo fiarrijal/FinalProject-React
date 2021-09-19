@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Table, Tag, Button, Row, Col, Space } from "antd";
 import axios from "axios";
 import { useQuery } from "react-query";
-import { useEffect } from "react";
 
 async function getAllDataUser() {
 	const response = await axios.get("user");
@@ -101,8 +100,8 @@ function BerandaContent() {
 				{ text: "Waiting for Approval", value: "Waiting for Approval" },
 				{ text: "Approved", value: "Approved" },
 			],
-			filteredValue: filteredInfo.status || null,
-			onFilter: (value, record) => record.enrollment_status.includes(value),
+			filteredValue: filteredInfo.enrollment_status || null,
+			onFilter: (value, record) => record.enrollment_status.indexOf(value) === 0,
 			ellipsis: true,
 		},
 		{
