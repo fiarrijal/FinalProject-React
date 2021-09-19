@@ -1,39 +1,57 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Form, Input, Button, Row, Col, Select } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Logo from "assets/images/logo.svg";
 import "./Login.css";
 import { FacebookFilled, GoogleCircleFilled } from "@ant-design/icons";
 import { nanoid } from "nanoid";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const { Option } = Select;
 
+function getDate() {
+	let date = new Date().getDate();
+	let month = new Date().getMonth() + 1;
+	let year = new Date().getFullYear();
+	let hours = new Date().getHours();
+	let min = new Date().getMinutes();
+	let sec = new Date().getSeconds();
+	return `${date}/${month}/${year} ${hours}:${min}:${sec}`;
+}
+
 function Register() {
-	const [fullName, setFullName] = useState("");
-	const [username, setUserName] = useState("");
-	const [password, setPassword] = useState("");
-	const [password2, setPassword2] = useState("");
-	const [kategoriProject, setKategoriProject] = useState("");
+	const history = useHistory();
 
-	const dataMauDiPush = {
-		id: nanoid(16),
-		tanggal_registrasi: new Date().toISOString(),
-		nama_lengkap: fullName,
-		username: username,
-		password: password,
-		topik_diminati: [kategoriProject],
-		enrollment_status: "Waiting for Approval",
-		role_id: 2,
-	};
-
-	const addData = () => {
-		const response = axios.post("user", dataMauDiPush);
+	const addData = async (data) => {
+		const response = await axios.post("user", data);
 		return response;
 	};
 
 	const onFinish = (values) => {
 		console.table("Success:", values);
+		if (values.password !== values.password_confirm) {
+			toast.error("Konfirmasi Password tidak sesuai");
+			setInterval(() => {
+				window.location.reload(false);
+			}, 1000);
+		} else {
+			const dataMauDiPush = {
+				id: nanoid(16),
+				tanggal_registrasi: getDate(),
+				nama_lengkap: values.nama,
+				username: values.username,
+				password: values.password,
+				topik_diminati: [values.kategori],
+				enrollment_status: "Waiting for Approval",
+				role_id: 2,
+			};
+			addData(dataMauDiPush);
+			toast.success(`Registrasi berhasil`);
+			setInterval(() => {
+				history.push("/");
+			}, 1000);
+		}
 	};
 
 	const onFinishFailed = (errorInfo) => {
@@ -70,7 +88,7 @@ function Register() {
 							},
 						]}
 					>
-						<Input onChange={(e) => setFullName(e.target.value)} value={fullName} />
+						<Input />
 					</Form.Item>
 					<Form.Item
 						className="form-item"
@@ -83,7 +101,7 @@ function Register() {
 							},
 						]}
 					>
-						<Input onChange={(e) => setUserName(e.target.value)} value={username} />
+						<Input />
 					</Form.Item>
 
 					<Form.Item
@@ -97,12 +115,12 @@ function Register() {
 							},
 						]}
 					>
-						<Input.Password onChange={(e) => setPassword(e.target.value)} value={password} />
+						<Input.Password />
 					</Form.Item>
 					<Form.Item
 						className="form-item"
 						label="Konfirmasi Password"
-						name="password-confirm"
+						name="password_confirm"
 						rules={[
 							{
 								required: true,
@@ -110,7 +128,7 @@ function Register() {
 							},
 						]}
 					>
-						<Input.Password onChange={(e) => setPassword2(e.target.value)} value={password2} />
+						<Input.Password />
 					</Form.Item>
 
 					<Form.Item
@@ -129,8 +147,8 @@ function Register() {
 							optionFilterProp="children"
 							filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 							filterSort={(optionA, optionB) => optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())}
-							value={kategoriProject}
-							onChange={(value) => setKategoriProject(value)}
+							// value={kategoriProject}
+							// onChange={(value) => setKategoriProject(value)}
 						>
 							<Option value="Pengembangan Teknologi">Pengembangan Teknologi</Option>
 							<Option value="Go Green">Go Green</Option>
@@ -139,7 +157,12 @@ function Register() {
 					</Form.Item>
 
 					<Form.Item className="form-item">
-						<Button type="primary" htmlType="submit" className="btn-login-submit" onClick={addData}>
+						<Button
+							type="primary"
+							htmlType="submit"
+							className="btn-login-submit"
+							// onClick={addData}
+						>
 							Register
 						</Button>
 					</Form.Item>

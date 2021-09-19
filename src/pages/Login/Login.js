@@ -8,6 +8,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { useState } from "react";
 import { setUserSession } from "data/util";
+import toast from "react-hot-toast";
 
 async function getUser() {
 	const response = await axios.get("user");
@@ -46,6 +47,7 @@ export default function Login() {
 		//Pengecekan isi array filtered. Jika ada isinya, maka push ke route profile
 		if (filtered.length) {
 			history.push("/dashboard");
+			toast.success("Anda berhasil login");
 		} else {
 			alert(`Email & Password tidak match`);
 		}

@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 axios.defaults.baseURL = "http://localhost:8080";
 axios.defaults.headers.get["Accept"] = "application/json";
@@ -23,6 +24,7 @@ ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<QueryClientProvider client={queryClient}>
+				<Toaster />
 				<App />
 			</QueryClientProvider>
 		</BrowserRouter>

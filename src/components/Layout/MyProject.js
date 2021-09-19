@@ -1,6 +1,5 @@
 import React from "react";
 import { Descriptions, Button, Card } from "antd";
-import ProjectData from "data/ProjectData";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { getUserSession } from "data/util";
@@ -15,7 +14,6 @@ function MyProject() {
 
 	console.log(status);
 	console.log(data);
-	console.log(data.length);
 
 	return (
 		<div>
