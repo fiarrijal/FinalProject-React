@@ -1,6 +1,4 @@
 import { Form, Select, Input, Button, Upload } from "antd";
-// import { UploadOutlined, InboxOutlined } from "@ant-design/icons";
-// import { useState } from "react";
 import { getUserSession } from "data/util";
 import { nanoid } from "nanoid";
 import axios from "axios";
@@ -26,10 +24,6 @@ const normFile = (e) => {
 };
 
 function PostArticleContent() {
-	// const [id, setId] = useState("");
-	// const [kategori, setKategori] = useState("");
-	// const [judul, setJudul] = useState("");
-	// const [isi, setIsi] = useState("");
 	const history = useHistory();
 
 	const addData = async (value) => {
@@ -94,6 +88,7 @@ function PostArticleContent() {
 					<Input.TextArea style={{ height: 150 }} />
 				</Form.Item>
 
+				{/* Form untuk upload */}
 				{/* <Form.Item name="upload" label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
 					<Upload name="logo" action="/upload.do" listType="picture">
 						<Button icon={<UploadOutlined />}>Upload your file</Button>

@@ -2,7 +2,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import "antd/dist/antd.css";
 import "./App.css";
 import { Layout } from "antd";
-import LoginMember from "./pages/Login/LoginMember";
+import Login from "./pages/Login/Login";
 import Register from "pages/Login/Register";
 import Sidebar from "components/Layout/Sidebar";
 import Head from "components/Layout/Head";
@@ -16,6 +16,7 @@ import CollabInvitation from "components/Layout/CollabInvitation";
 import Beranda from "components/MainContent/BerandaContent/BerandaContent";
 import PrivateRoute from "data/PrivateRoute";
 import { getUserSession } from "data/util";
+import ArticleEdit from "components/EditDrawer/ArticleEdit";
 const { Content } = Layout;
 
 function App() {
@@ -24,8 +25,9 @@ function App() {
 			<Route path="/" exact>
 				<Redirect to="/login" />
 			</Route>
-			<Route path="/login" component={LoginMember} />
+			<Route path="/login" component={Login} />
 			<Route path="/register" exact component={Register} />
+			<Route path="/edit" exact component={ArticleEdit} />
 			<PrivateRoute path="/dashboard">
 				<Layout style={{ minHeight: "100vh" }}>
 					<Sidebar />

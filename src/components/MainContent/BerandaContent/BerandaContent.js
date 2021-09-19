@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import { Table, Tag, Button, Row, Col } from "antd";
+import { Table, Tag, Button, Row, Col, Space } from "antd";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { useEffect } from "react";
 
-function getDataUser() {
-	const response = axios.get("user");
+async function getAllDataUser() {
+	const response = await axios.get("user");
+	return response;
+}
+
+async function UpdateEnrollmentUser(id, data) {
+	const response = await axios.put(`user/${id}`, data);
 	return response;
 }
 
@@ -14,7 +19,7 @@ function BerandaContent() {
 	let [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
 	// fetching user data
-	const { data, status } = useQuery("user", getDataUser);
+	const { data, status } = useQuery("user", getAllDataUser);
 
 	// Ganti param object "id" ke "key" agar dapat select per row di table
 	let dataMap = [];
@@ -32,8 +37,8 @@ function BerandaContent() {
 		setSelectedRowKeys(selectedRowKeys);
 	};
 
-	const handleChange = (pagination, filters) => {
-		// console.log('Various parameters', pagination, filters, sorter);
+	const handleChange = (pagination, filters, sorter) => {
+		console.log("Various parameters", pagination, filters, sorter);
 		setFilteredInfo(filters);
 	};
 
@@ -93,26 +98,61 @@ function BerandaContent() {
 			dataIndex: "enrollment_status",
 			key: "enrollment_status",
 			filters: [
-				{ text: "Menunggu Approval", value: "0" },
-				{ text: "Approved", value: "1" },
+				{ text: "Waiting for Approval", value: "Waiting for Approval" },
+				{ text: "Approved", value: "Approved" },
 			],
 			filteredValue: filteredInfo.status || null,
-			onFilter: (value, record) => record.status.includes(value),
+			onFilter: (value, record) => record.enrollment_status.includes(value),
 			ellipsis: true,
+		},
+		{
+			title: "Action",
+			key: "action",
+			render: (text, record) => (
+				<Space size="middle">
+					<Button
+						type="primary"
+						onClick={() => {
+							if (record.enrollment_status !== "Approved") {
+								UpdateEnrollmentUser(record.key, {
+									id: record.key,
+									tanggal_registrasi: record.tanggal_registrasi,
+									nama_lengkap: record.nama_lengkap,
+									username: record.username,
+									password: record.password,
+									topik_diminati: record.topik_diminati,
+									enrollment_status: "Approved",
+									role_id: record.role_id,
+								});
+								window.location.reload(false);
+							}
+						}}
+					>
+						Approve
+					</Button>
+				</Space>
+			),
 		},
 	];
 
 	return (
 		<div>
 			<h1>Enrollment Request</h1>
-			<Table rowSelection={rowSelection} columns={columns} dataSource={dataMap} onChange={handleChange} />
-			<Row>
+			<Table
+				// rowSelection={rowSelection}
+				columns={columns}
+				dataSource={dataMap}
+				onChange={handleChange}
+			/>
+
+			{/* Tombol untuk approve banyak user sekaligus */}
+			{/* <Row>
 				<Col span={24} style={{ display: "flex", flexFlow: "row-reverse" }}>
 					<Button type="primary" style={{ marginBottom: 16, width: "100%" }}>
 						Approve
 					</Button>
 				</Col>
-			</Row>
+			</Row> */}
 		</div>
 	);
 }

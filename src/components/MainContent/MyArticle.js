@@ -1,8 +1,9 @@
-import React from "react";
-import { Descriptions, Button, Card } from "antd";
+import React, { useState } from "react";
+import { Descriptions, Button, Card, Space } from "antd";
 import axios from "axios";
 import { useQuery } from "react-query";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
+import { Fragment } from "react";
 
 async function getArticle() {
 	const response = await axios.get("artikel");
@@ -36,18 +37,20 @@ function MyArticle() {
 					{isiData.map((isi) => {
 						const { id, posting_date, kategori, judul, isi_artikel, id_user } = isi;
 						return (
-							<MyArticleCard
-								key={id}
-								kategori={kategori}
-								judul={judul}
-								tanggal={posting_date}
-								user={id_user}
-								isi_artikel={isi_artikel}
-								btn_click={() => {
-									deleteArticle(id);
-									getArticle();
-								}}
-							/>
+							<Fragment>
+								<MyArticleCard
+									key={id}
+									kategori={kategori}
+									judul={judul}
+									tanggal={posting_date}
+									user={id_user}
+									isi_artikel={isi_artikel}
+									btn_click={() => {
+										deleteArticle(id);
+										getArticle();
+									}}
+								/>
+							</Fragment>
 						);
 					})}
 				</div>
@@ -66,9 +69,12 @@ function MyArticleCard(props) {
 					bordered
 					size="small"
 					extra={
-						<Button type="danger" onClick={props.btn_click}>
-							Hapus
-						</Button>
+						<Space>
+							<Button type="primary">Edit</Button>
+							<Button type="danger" onClick={props.btn_click}>
+								Hapus
+							</Button>
+						</Space>
 					}
 				>
 					<Descriptions.Item span={24} label="Kategori">

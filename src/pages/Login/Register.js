@@ -23,8 +23,8 @@ function Register() {
 		username: username,
 		password: password,
 		topik_diminati: [kategoriProject],
-		enrollment_status: 0,
-		role_id: 1,
+		enrollment_status: "Waiting for Approval",
+		role_id: 2,
 	};
 
 	const addData = () => {
@@ -33,7 +33,7 @@ function Register() {
 	};
 
 	const onFinish = (values) => {
-		console.log("Success:", values);
+		console.table("Success:", values);
 	};
 
 	const onFinishFailed = (errorInfo) => {
@@ -114,7 +114,7 @@ function Register() {
 					</Form.Item>
 
 					<Form.Item
-						name={["user", "kategori"]}
+						name={["kategori"]}
 						label="Kategori Project"
 						rules={[
 							{
