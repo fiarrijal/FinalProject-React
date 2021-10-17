@@ -1,81 +1,108 @@
-import React from "react";
-import { Descriptions, Button, Card } from "antd";
+import React, { useEffect, useState } from "react";
+import { Modal } from "antd";
 import axios from "axios";
-import { useQuery } from "react-query";
-import { getUserSession } from "data/util";
+import { formatDate, getUserSession } from "data/util";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+import toast from "react-hot-toast";
+import FormEdit from "components/FormEdit";
+import { useHistory } from "react-router-dom";
+import ProjectCard from "./ProjectCard";
 
-async function getOwnProject() {
-	const response = axios.get("project", { params: { admin: getUserSession().id, collaborator_user_id: getUserSession().id } });
+const { confirm } = Modal;
+
+async function deleteProject(id) {
+	const response = await axios.delete(`project/${id}`);
 	return response;
 }
 
 function MyProject() {
-	const { data, status } = useQuery("project", getOwnProject);
+	const [project, setProject] = useState([]);
+	const [isModalVisible, setIsModalVisible] = useState(false);
+	const handleOk = () => setIsModalVisible(false);
+	const handleCancel = () => setIsModalVisible(false);
+	let history = useHistory();
 
-	console.log(status);
-	console.log(data);
+	async function getOwnProject() {
+		const response = await axios.get("project", {
+			params: {
+				admin: getUserSession("user").username,
+			},
+		});
+		setProject(response);
+	}
+
+	useEffect(() => {
+		getOwnProject();
+	}, []);
+
+	//fungsi showConfirm untuk delete data
+	function showConfirm(id) {
+		confirm({
+			title: "Do you want to delete these items?",
+			icon: <ExclamationCircleOutlined />,
+			content: "Some descriptions",
+			onOk() {
+				// Panggil fungsi delete di sini
+				let isi = [...project]; // set seluruh isi data project
+				let filtered = isi.filter((data) => data.id !== id);
+
+				//Proses delete
+				toast.success(`Project berhasil dihapus`);
+				setProject(filtered);
+				deleteProject(id);
+			},
+			onCancel() {
+				console.log("Cancel");
+			},
+		});
+	}
+
+	//fungsi edit project
+	// function editProject(id) {
+	// 	console.log(`Ini id nya : `, id);
+	// }
 
 	return (
 		<div>
-			<h2>Project Saya</h2>
-			{status === "loading" && <div> Loading Data</div>}
-			{status === "error" && <div> Error Fetching Data</div>}
-			{status === "success" &&
-				(data.length <= 0 ? (
-					<div>Kamu belum memiliki project / belum bergabung dalam project</div>
-				) : (
-					<div>
-						{data.map((filtered) => {
-							const { id, kategori_project, nama_project, tanggal_mulai, link_trello, deskripsi_project, invited_user_id, collaborator_user_id, admin } = filtered;
-							return (
-								<MyProjectCard
-									key={id}
-									category={kategori_project}
-									name={nama_project}
-									date={tanggal_mulai}
-									description={deskripsi_project}
-									link={link_trello}
-									admin={admin}
-									collaborator={collaborator_user_id.map((col) => `${col}, `)}
-								/>
-							);
-						})}
-					</div>
-				))}
+			{project.length <= 0 ? (
+				<h4>Kamu belum memiliki project</h4>
+			) : (
+				<div>
+					{project.map((filtered) => {
+						const { id, kategori_project, nama_project, tanggal_mulai, link_trello, deskripsi_project, invited_user_id, collaborator_user_id } = filtered;
+						return (
+							<ProjectCard
+								key={id}
+								category={kategori_project}
+								name={nama_project}
+								date={formatDate(tanggal_mulai)}
+								description={deskripsi_project}
+								link={link_trello}
+								invited_user_id={invited_user_id.map((value) => `${value}, `)}
+								collaborator={collaborator_user_id.map((value) => `${value}, `)}
+								onClickDelete={() => {
+									showConfirm(id);
+								}}
+								onClickEdit={() => history.push(`/dashboard/member/buat-project/${id}`)}
+								onClickDetail={() => history.push(`/dashboard/member/project/project-saya/${id}`)}
+							/>
+						);
+					})}
+					<ModalEdit visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+						<FormEdit />
+					</ModalEdit>
+				</div>
+			)}
 		</div>
 	);
 }
 
-function MyProjectCard(props) {
-	const { category, name, date, description, collaborator, link, admin } = props;
+function ModalEdit(props) {
 	return (
-		<Card style={{ marginBottom: "1.5rem" }}>
-			<Descriptions bordered size="small" extra={<Button type="primary">Edit</Button>}>
-				<Descriptions.Item label="Kategori Project" span={24}>
-					{category}
-				</Descriptions.Item>
-				<Descriptions.Item span={24} label="Nama Project">
-					{name}
-				</Descriptions.Item>
-				<Descriptions.Item span={24} label="Tanggal Mulai">
-					{date}
-				</Descriptions.Item>
-				<Descriptions.Item span={24} label="Deskripsi Project">
-					{description}
-				</Descriptions.Item>
-				<Descriptions.Item span={24} label="Link Trello">
-					<a href={link} target="_blank" rel="noreferrer">
-						{link}
-					</a>
-				</Descriptions.Item>
-				<Descriptions.Item span={24} label="Admin">
-					{admin}
-				</Descriptions.Item>
-				<Descriptions.Item span={24} label="Kolaborator">
-					{collaborator}
-				</Descriptions.Item>
-			</Descriptions>
-		</Card>
+		<Modal title={props.title} visible={props.visible} onOk={props.handleOk} onCancel={props.onCancel}>
+			{props.children}
+		</Modal>
 	);
 }
+
 export default MyProject;

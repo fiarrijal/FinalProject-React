@@ -1,0 +1,103 @@
+{
+	"role": [
+		{
+			"id": "1",
+			"status": "Admin"
+		},
+		{
+			"id": "2",
+			"status": "Member"
+		}
+	],
+	"user": [
+		{
+			"id": 3,
+			"tanggal_registrasi": "",
+			"nama_lengkap": "Admin Tampan",
+			"email": "admin",
+			"password": "admin",
+			"topik_diminati": "Go Green",
+			"enrollment_status": "Approved",
+			"role_status": "Admin"
+		},
+		{
+			"id": 1,
+			"tanggal_registrasi": "",
+			"nama_lengkap": "Member Ga tau diri",
+			"email": "member",
+			"password": "member",
+			"topik_diminati": "Go Green",
+			"enrollment_status": "Approved",
+			"role_status": "Member"
+		},
+		{
+			"id": "x_Hx9QbhGwul_zoT",
+			"tanggal_registrasi": "2021-10-05T15:22:46.911Z",
+			"nama_lengkap": "Mbak Winter",
+			"email": "winteraespa",
+			"password": "winteraespa",
+			"topik_diminati": "Go Green",
+			"enrollment_status": "Approved",
+			"role_status": "Member"
+		},
+		{
+			"id": "pNZo7S9YhO9Tp9Lh",
+			"tanggal_registrasi": "2021-10-05T15:22:46.911Z",
+			"nama_lengkap": "Karina",
+			"email": "karinaaespa",
+			"password": "karinaaespa",
+			"topik_diminati": "Go Green",
+			"enrollment_status": "Approved",
+			"role_status": "Member"
+		},
+		{
+			"id": "SkPnFsa5IdhD1Q9u",
+			"tanggal_registrasi": "2021-10-05T15:22:46.911Z",
+			"nama_lengkap": "Mbak Lee Hi",
+			"email": "Leehi",
+			"password": "leehi",
+			"topik_diminati": "Pengembangan Teknologi",
+			"enrollment_status": "Waiting for Approval",
+			"role_status": "Member"
+		},
+		{
+			"id": "k5Mb5-iCZ2_hNO8o",
+			"tanggal_registrasi": "2021-10-05T15:22:46.911Z",
+			"nama_lengkap": "a",
+			"email": "a",
+			"password": "a",
+			"topik_diminati": "Go Green",
+			"enrollment_status": "Waiting for Approval",
+			"role_status": "Member"
+		}
+	],
+	"project": [
+		{
+			"id": "SkPnFsa5IdhD1Q9u",
+			"kategori_project": "Go Green",
+			"nama_project": "QMS Queue Management System",
+			"tanggal_mulai": "2021-10-05T15:22:46.911Z",
+			"tanggal_update": "",
+			"link_trello": "https://trello.com/c/EuJ1zjbJ/94-devlist-backend",
+			"deskripsi_project": "Sebagai penyedia layanan bank, kami ingin memberikan nasabah layanan perbankan tanpa harus lama menghabiskan waktu menunggu antrian.",
+			"invited_username": ["Giselle"],
+			"invited_email": ["giselle@aespa.com"],
+			"collaborator_username": ["Winter", "Karina"],
+			"collaborator_email": ["winter@aespa.com", "karina@aespa.com"],
+			"admin": "Ningning",
+			"admin_email": "ningning@aespa.com"
+		}
+	],
+	"artikel": [
+		{
+			"id": "BcNpXbSeFHCm_8pQ",
+			"posting_date": "2021-09-23T01:16:04.249Z",
+			"update_date": "",
+			"kategori": "Go Green",
+			"judul": "Tanam kasut",
+			"isi_artikel": "Isi artikel nya boleh apa aja",
+			"username": "Ningning",
+			"user_email": "ningning@aespa.com"
+		}
+	]
+}

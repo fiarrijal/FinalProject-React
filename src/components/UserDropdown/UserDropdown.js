@@ -1,17 +1,16 @@
 import React from "react";
-import { Menu, Dropdown, Space } from "antd";
-import UserImage from "../../assets/images/user.jpg";
+import { Menu, Dropdown, Space, Avatar } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { getUserSession } from "data/util";
 import "./UserDropdown.css";
+import { Link } from "react-router-dom";
 
 export default function UserDropdown() {
 	const menus = (
 		<Menu>
 			<Menu.Item key="1" icon={<ExitToAppIcon />}>
-				<a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-					Sign Out
-				</a>
+				<Link to="/">Sign Out</Link>
 			</Menu.Item>
 		</Menu>
 	);
@@ -21,11 +20,10 @@ export default function UserDropdown() {
 				<Dropdown overlay={menus} placement="bottomRight">
 					<div className="header-user">
 						<div className="header-user-text">
-							<h3 className="user-name">{getUserSession().nama_lengkap}</h3>
-							<span className="user-title">Engineer</span>
+							<h3 className="user-name">{getUserSession("user").nama_lengkap}</h3>
 						</div>
 						<div className="header-image-container">
-							<img src={UserImage} alt="user" className="user-image" />
+							<Avatar icon={<UserOutlined />} />
 						</div>
 					</div>
 				</Dropdown>

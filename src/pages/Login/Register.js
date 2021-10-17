@@ -10,15 +10,15 @@ import toast from "react-hot-toast";
 
 const { Option } = Select;
 
-function getDate() {
-	let date = new Date().getDate();
-	let month = new Date().getMonth() + 1;
-	let year = new Date().getFullYear();
-	let hours = new Date().getHours();
-	let min = new Date().getMinutes();
-	let sec = new Date().getSeconds();
-	return `${date}/${month}/${year} ${hours}:${min}:${sec}`;
-}
+// function getDate() {
+// 	let date = new Date().getDate();
+// 	let month = new Date().getMonth() + 1;
+// 	let year = new Date().getFullYear();
+// 	let hours = new Date().getHours();
+// 	let min = new Date().getMinutes();
+// 	let sec = new Date().getSeconds();
+// 	return `${date}/${month}/${year} ${hours}:${min}:${sec}`;
+// }
 
 function Register() {
 	const history = useHistory();
@@ -38,7 +38,7 @@ function Register() {
 		} else {
 			const dataMauDiPush = {
 				id: nanoid(16),
-				tanggal_registrasi: getDate(),
+				tanggal_registrasi: new Date().toISOString(),
 				nama_lengkap: values.nama,
 				username: values.username,
 				password: values.password,
@@ -48,9 +48,9 @@ function Register() {
 			};
 			addData(dataMauDiPush);
 			toast.success(`Registrasi berhasil`);
-			setInterval(() => {
+			setTimeout(() => {
 				history.push("/");
-			}, 1000);
+			}, 2000);
 		}
 	};
 
@@ -68,7 +68,7 @@ function Register() {
 				</div>
 				<Form
 					style={{ width: 400 }}
-					layout="horizontal"
+					layout="vertical"
 					name="basic"
 					initialValues={{
 						remember: true,
@@ -79,7 +79,7 @@ function Register() {
 				>
 					<Form.Item
 						className="form-item"
-						label="Nama Lengkap"
+						// label="Nama Lengkap"
 						name="nama"
 						rules={[
 							{
@@ -88,11 +88,11 @@ function Register() {
 							},
 						]}
 					>
-						<Input />
+						<Input placeholder="Nama Lengkap" />
 					</Form.Item>
 					<Form.Item
 						className="form-item"
-						label="Username"
+						// label="Username"
 						name="username"
 						rules={[
 							{
@@ -101,12 +101,12 @@ function Register() {
 							},
 						]}
 					>
-						<Input />
+						<Input placeholder="Username" />
 					</Form.Item>
 
 					<Form.Item
 						className="form-item"
-						label="Password"
+						// label="Password"
 						name="password"
 						rules={[
 							{
@@ -115,11 +115,11 @@ function Register() {
 							},
 						]}
 					>
-						<Input.Password />
+						<Input.Password placeholder="Password" />
 					</Form.Item>
 					<Form.Item
 						className="form-item"
-						label="Konfirmasi Password"
+						// label="Konfirmasi Password"
 						name="password_confirm"
 						rules={[
 							{
@@ -128,12 +128,12 @@ function Register() {
 							},
 						]}
 					>
-						<Input.Password />
+						<Input.Password placeholder="Konfirmasi Password" />
 					</Form.Item>
 
 					<Form.Item
 						name={["kategori"]}
-						label="Kategori Project"
+						// label="Kategori Project"
 						rules={[
 							{
 								// required: true,
@@ -142,7 +142,7 @@ function Register() {
 					>
 						<Select
 							showSearch
-							style={{ width: 200 }}
+							// style={{ width: 200 }}
 							placeholder="Pilih topik"
 							optionFilterProp="children"
 							filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}

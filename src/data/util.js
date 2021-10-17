@@ -1,11 +1,11 @@
 //set user from the session storage
-export const setUserSession = (user) => {
-	sessionStorage.setItem("user", JSON.stringify(user));
+export const setUserSession = (param, user) => {
+	sessionStorage.setItem(param, JSON.stringify(user));
 };
 
 //get user from the session storage
-export const getUserSession = () => {
-	const userStr = sessionStorage.getItem("user");
+export const getUserSession = (param) => {
+	const userStr = sessionStorage.getItem(param);
 	if (userStr) {
 		return JSON.parse(userStr);
 	} else {
@@ -15,6 +15,12 @@ export const getUserSession = () => {
 };
 
 //remove user from the session storage
-export const removeUserSession = () => {
-	sessionStorage.removeItem(`user`);
+export const removeUserSession = (param) => {
+	sessionStorage.removeItem(param);
+};
+
+// format date locale Indonesia
+export const formatDate = (dateString) => {
+	const options = { year: "numeric", month: "long", day: "numeric" };
+	return new Date(dateString).toLocaleDateString(`id-ID`, options);
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table, Tag, Button, Row, Col, Space } from "antd";
+import { Table, Tag, Button, Space } from "antd";
 import axios from "axios";
 import { useQuery } from "react-query";
 
@@ -15,7 +15,7 @@ async function UpdateEnrollmentUser(id, data) {
 
 function BerandaContent() {
 	let [filteredInfo, setFilteredInfo] = useState(null);
-	let [selectedRowKeys, setSelectedRowKeys] = useState([]);
+	// let [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
 	// fetching user data
 	const { data, status } = useQuery("user", getAllDataUser);
@@ -23,7 +23,7 @@ function BerandaContent() {
 	// Ganti param object "id" ke "key" agar dapat select per row di table
 	let dataMap = [];
 	if (status === "success") {
-		let i = 0;
+		// let i = 0;
 		dataMap = data.map((isi) => {
 			const { id: key, tanggal_registrasi, nama_lengkap, username, password, topik_diminati, enrollment_status, role_id } = isi;
 			const newObj = { key, tanggal_registrasi, nama_lengkap, username, password, topik_diminati, enrollment_status, role_id };
@@ -31,20 +31,20 @@ function BerandaContent() {
 		});
 	}
 
-	const onSelectChange = (selectedRowKeys) => {
-		console.log("selectedRowKeys changed: ", selectedRowKeys);
-		setSelectedRowKeys(selectedRowKeys);
-	};
+	// const onSelectChange = (selectedRowKeys) => {
+	// 	console.log("selectedRowKeys changed: ", selectedRowKeys);
+	// 	setSelectedRowKeys(selectedRowKeys);
+	// };
 
 	const handleChange = (pagination, filters, sorter) => {
 		console.log("Various parameters", pagination, filters, sorter);
 		setFilteredInfo(filters);
 	};
 
-	const rowSelection = {
-		selectedRowKeys,
-		onChange: onSelectChange,
-	};
+	// const rowSelection = {
+	// 	selectedRowKeys,
+	// 	onChange: onSelectChange,
+	// };
 	// const hasSelected = selectedRowKeys.length > 0;
 
 	filteredInfo = filteredInfo || {};
@@ -53,11 +53,11 @@ function BerandaContent() {
 			title: "No",
 			width: 70,
 			fixed: "left",
-			render: (data = data) => {
-				for (let i = 0; i <= data.length; i++) {
-					<div>{i}</div>;
-				}
-			},
+			// render: (data = data) => {
+			// 	for (let i = 0; i <= data.length; i++) {
+			// 		<div>{i}</div>;
+			// 	}
+			// },
 		},
 		{
 			title: "Tanggal Registrasi",
@@ -82,6 +82,9 @@ function BerandaContent() {
 						}
 						if (tag === "Pengembangan Teknologi") {
 							color = "geekblue";
+						}
+						if (tag === "Sosial & Kemanusiaan") {
+							color = "blueviolet";
 						}
 						return (
 							<Tag color={color} key={tag}>

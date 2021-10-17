@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoute = ({ children, ...rest }) => {
 	//Pengecekan apakah ada data di session storage
-	const isAuth = getUserSession() === null ? false : true;
+	const isAuth = getUserSession("user") === null ? false : true;
 	console.log(isAuth);
 
 	return (
