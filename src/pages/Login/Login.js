@@ -1,55 +1,54 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Form, Input, Button, Checkbox, Row, Col, Divider } from "antd";
-import Logo from "../../assets/images/logo.svg";
+import Logo from "assets/images/logo.svg";
 import "./Login.css";
 import { FacebookFilled, GoogleCircleFilled } from "@ant-design/icons";
 import { useHistory, Link } from "react-router-dom";
-import { useQuery } from "react-query";
+
 import axios from "axios";
 import { useState } from "react";
 import { setUserSession } from "data/util";
 import toast from "react-hot-toast";
 
-async function getUser() {
-	const response = await axios.get("user");
-	return response;
-}
-
 export default function Login() {
-	//Obtaining email & password value from input
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [data, setData] = useState([]);
+	const history = useHistory();
+
+	const getUser = async () => {
+		const response = await axios.get("user");
+		setData(response);
+	};
 
 	// fetching data user
-	const { data, status } = useQuery("user", getUser);
-
-	const history = useHistory();
+	useEffect(() => {
+		getUser();
+	}, []);
 
 	//Login Function
 
 	const onFinish = (values) => {
 		//Cek isi value
-		console.log("Success:", values);
 
 		// Pengecekan apakah data input sesuai dengan data api. Jika sesuai maka buat array baru &
 		//Memilih data yang disimpan di session storage
 		const filtered = data
 			.filter((isi) => {
-				const a = values.email === isi.username && values.password === isi.password;
+				const a = values.username === isi.username && values.password === isi.password;
 				return a;
 			})
 			.map((filter) => {
-				const { id, nama_lengkap, role_id } = filter;
-				const a = setUserSession({ id, nama_lengkap, role_id });
+				const { id, nama_lengkap, username, role_id } = filter;
+				const a = setUserSession("user", { id, nama_lengkap, username, role_id });
 				return a;
 			});
 
 		//Pengecekan isi array filtered. Jika ada isinya, maka push ke route profile
-		if (filtered.length) {
+		if (filtered.length === 1) {
 			history.push("/dashboard");
 			toast.success("Anda berhasil login");
+			window.location.reload(false);
 		} else {
-			alert(`Email & Password tidak match`);
+			alert(`Username & Password tidak match`);
 		}
 	};
 
@@ -77,21 +76,17 @@ export default function Login() {
 				>
 					<Form.Item
 						className="form-item"
-						label="Email"
-						name="email"
+						label="Username"
+						name="username"
 						rules={[
 							{
 								required: true,
-								message: "Email wajib diisi!",
+								// type: "email",
+								message: "Username wajib diisi!",
 							},
 						]}
 					>
-						<Input
-							value={email}
-							onChange={(e) => {
-								setEmail(e.target.value);
-							}}
-						/>
+						<Input />
 					</Form.Item>
 
 					<Form.Item
@@ -105,12 +100,7 @@ export default function Login() {
 							},
 						]}
 					>
-						<Input.Password
-							value={password}
-							onChange={(e) => {
-								setPassword(e.target.value);
-							}}
-						/>
+						<Input.Password />
 					</Form.Item>
 
 					<Form.Item

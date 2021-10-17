@@ -30,32 +30,42 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 800, ...props }) {
 
 async function fetchUserList(username) {
 	console.log("fetching user", username);
-	return fetch("https://randomuser.me/api/?results=5")
+	return fetch("http://localhost:8080/user")
 		.then((response) => response.json())
 		.then((body) =>
-			body.results.map((user) => ({
-				label: `${user.name.first} ${user.name.last}`,
-				value: user.login.username,
+			body.map((user) => ({
+				label: `${user.username}`,
+				value: user.username,
 			}))
 		);
 }
 
-const SelectContributor = () => {
-	const [value, setValue] = React.useState([]);
+export default function SelectContributor(props) {
+	// const [val, setVal] = React.useState([]);
+	// const mapping = val.map((isi) => {
+	// 	const { value } = isi;
+	// 	return { value };
+	// });
+	// console.log(val);
+
+	// console.log(mapping);
+
 	return (
 		<DebounceSelect
 			mode="multiple"
-			value={value}
-			placeholder="Select users"
+			// value={val}
+			value={props.value}
+			placeholder="Pilih kontributor"
 			fetchOptions={fetchUserList}
-			onChange={(newValue) => {
-				setValue(newValue);
+			// onChange={(newValue) => {
+			// 	setVal(newValue);
+			// }}
+			onChange={(val) => {
+				props.setVal(val);
 			}}
 			style={{
 				width: "100%",
 			}}
 		/>
 	);
-};
-
-export default SelectContributor;
+}

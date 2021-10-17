@@ -10,6 +10,9 @@ import { Toaster } from "react-hot-toast";
 axios.defaults.baseURL = "http://localhost:8080";
 axios.defaults.headers.get["Accept"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
+axios.defaults.headers.delete["Accept"] = "application/json";
+axios.defaults.headers.patch["Accept"] = "application/json";
+axios.defaults.headers.put["Accept"] = "application/json";
 
 axios.interceptors.response.use(
 	({ data }: AxiosResponse) => data,
