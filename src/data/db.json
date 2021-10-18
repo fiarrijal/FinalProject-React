@@ -1,204 +1,192 @@
 {
-  "role": [
-    {
-      "id": "1",
-      "status": "Admin"
-    },
-    {
-      "id": "2",
-      "status": "Member"
-    }
-  ],
-  "user": [
-    {
-      "id": 3,
-      "tanggal_registrasi": "",
-      "nama_lengkap": "Admin Tampan",
-      "username": "admin",
-      "password": "admin",
-      "topik_diminati": [
-        "Go Green"
-      ],
-      "enrollment_status": "Approved",
-      "role_id": 1
-    },
-    {
-      "id": 1,
-      "tanggal_registrasi": "",
-      "nama_lengkap": "Member Ga tau diri",
-      "username": "member",
-      "password": "member",
-      "topik_diminati": [
-        "Go Green"
-      ],
-      "enrollment_status": "Approved",
-      "role_id": 2
-    },
-    {
-      "id": "if5nWPjq8dlWxGVp",
-      "tanggal_registrasi": "2021-10-09T02:47:01.413Z",
-      "nama_lengkap": "Winter Aespa",
-      "username": "winteraespa",
-      "password": "winter",
-      "topik_diminati": [
-        "Go Green"
-      ],
-      "enrollment_status": "Waiting for Approval",
-      "role_id": 2
-    }
-  ],
-  "project": [
-    {
-      "id": "1KnL8Rp7gCAV41yV",
-      "kategori_project": "Go Green",
-      "nama_project": "Makan makan ubi",
-      "tanggal_mulai": "2021-10-07T09:27:51.375Z",
-      "link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
-      "deskripsi_project": "f",
-      "invited_user_id": [],
-      "collaborator_user_id": [
-        "winteraespa"
-      ],
-      "admin": "member"
-    },
-    {
-      "id": "Y6ZX97ZbU1BrYFfS",
-      "kategori_project": "Pengembangan Teknologi",
-      "nama_project": "Banking Innovation CoCreate Platform",
-      "tanggal_mulai": "2021-10-01T09:33:11.832Z",
-      "link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
-      "deskripsi_project": "fsdfsf",
-      "invited_user_id": [],
-      "collaborator_user_id": [
-        "winteraespa"
-      ],
-      "admin": "member"
-    },
-    {
-      "id": "n34NWivtC_rqRe3b",
-      "kategori_project": "Sosial & Kemanusiaan",
-      "nama_project": "Makan makan ubi",
-      "tanggal_mulai": "2021-10-11T09:35:57.408Z",
-      "link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
-      "deskripsi_project": "fff",
-      "invited_user_id": [],
-      "collaborator_user_id": [
-        "winteraespa"
-      ],
-      "admin": "member"
-    },
-    {
-      "id": "ZN9aUiqd11Kqezcw",
-      "kategori_project": "Sosial & Kemanusiaan",
-      "nama_project": "Makan makan ubi",
-      "tanggal_mulai": "2021-10-26T09:37:00.438Z",
-      "link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
-      "deskripsi_project": "f",
-      "invited_user_id": [],
-      "collaborator_user_id": [],
-      "admin": "member"
-    },
-    {
-      "id": "Fk6UclqfMKfy2PB-",
-      "kategori_project": "Sosial & Kemanusiaan",
-      "nama_project": "sosial",
-      "tanggal_mulai": "2021-10-13T07:14:35.516Z",
-      "link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
-      "deskripsi_project": "v",
-      "invited_user_id": [
-        "winteraespa"
-      ],
-      "collaborator_user_id": [],
-      "admin": "member"
-    },
-    {
-      "id": "faeY-pmRU75sb0Eo",
-      "kategori_project": "Go Green",
-      "nama_project": "Makan makan ubi",
-      "tanggal_mulai": "2021-10-12T07:21:27.393Z",
-      "link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
-      "deskripsi_project": "vvx",
-      "invited_user_id": [],
-      "collaborator_user_id": [
-        "member"
-      ],
-      "admin": "winteraespa"
-    },
-    {
-      "id": "aJPKFdYQuTK7N0Pe",
-      "kategori_project": "Pengembangan Teknologi",
-      "nama_project": "a",
-      "tanggal_mulai": "2021-10-13T13:13:08.895Z",
-      "link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
-      "deskripsi_project": "f",
-      "invited_user_id": [
-        "winteraespa"
-      ],
-      "collaborator_user_id": [],
-      "admin": "member"
-    },
-    {
-      "id": "3EkWdQAiTG9R2dxr",
-      "kategori_project": "Sosial & Kemanusiaan",
-      "nama_project": "Makan makan ubi",
-      "tanggal_mulai": "2021-10-17T19:24:01.610Z",
-      "link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
-      "deskripsi_project": "f",
-      "invited_user_id": [
-        "winteraespa"
-      ],
-      "collaborator_user_id": [],
-      "admin": "member"
-    }
-  ],
-  "artikel": [
-    {
-      "id": "kaGQteVAaAYEKW1N",
-      "posting_date": "2021-10-09T02:53:49.333Z",
-      "kategori": "Sosial & Kemanusiaan",
-      "judul": "ini ganti judul 1",
-      "isi_artikel": "qwerty",
-      "id_user": "winteraespa"
-    },
-    {
-      "id": "U4gJbZXdpSVQUsnv",
-      "posting_date": "2021-10-12T08:09:15.267Z",
-      "kategori": "Go Green",
-      "judul": "Demi",
-      "isi_artikel": "aku",
-      "id_user": "member"
-    },
-    {
-      "id": "8hi9K0OS4-jhobMg",
-      "posting_date": "2021-10-12T08:09:42.612Z",
-      "kategori": "Sosial & Kemanusiaan",
-      "judul": "Ini judul yang diedit",
-      "isi_artikel": "ffff",
-      "id_user": "member"
-    },
-    {
-      "id": "6xrDpHBdZmxRjWbq",
-      "posting_date": "2021-10-13T13:18:47.178Z",
-      "kategori": "Pengembangan Teknologi",
-      "judul": "Ini judul yang diedit",
-      "isi_artikel": "as",
-      "id_user": "member"
-    },
-    {
-      "id": "_BqubyxMVO5Wk7ok",
-      "posting_date": "2021-10-16T00:06:36.567Z",
-      "kategori": "Pengembangan Teknologi",
-      "judul": "dada",
-      "isi_artikel": "a",
-      "id_user": "member"
-    },
-    {
-      "id": "5Oo4b-cbapqHdRiz",
-      "posting_date": "2021-10-16T04:53:43.175Z",
-      "kategori": "Sosial & Kemanusiaan",
-      "judul": "ini ganti judul 1234",
-      "isi_artikel": "qwerty",
-      "id_user": "member"
-    }
-  ]
+	"role": [
+		{
+			"id": "1",
+			"status": "Admin"
+		},
+		{
+			"id": "2",
+			"status": "Member"
+		}
+	],
+	"user": [
+		{
+			"id": 3,
+			"tanggal_registrasi": "",
+			"nama_lengkap": "Admin Tampan",
+			"username": "admin",
+			"password": "admin",
+			"topik_diminati": ["Go Green"],
+			"enrollment_status": "Approved",
+			"role_id": 1
+		},
+		{
+			"id": 1,
+			"tanggal_registrasi": "",
+			"nama_lengkap": "Member Ga tau diri",
+			"username": "member",
+			"password": "member",
+			"topik_diminati": ["Go Green"],
+			"enrollment_status": "Approved",
+			"role_id": 2
+		},
+		{
+			"id": "if5nWPjq8dlWxGVp",
+			"tanggal_registrasi": "2021-10-09T02:47:01.413Z",
+			"nama_lengkap": "Winter Aespa",
+			"username": "winteraespa",
+			"password": "winter",
+			"topik_diminati": ["Go Green"],
+			"enrollment_status": "Waiting for Approval",
+			"role_id": 2
+		}
+	],
+	"project": [
+		{
+			"id": "1KnL8Rp7gCAV41yV",
+			"kategori_project": "Go Green",
+			"nama_project": "Makan makan ubi",
+			"tanggal_mulai": "2021-10-07T09:27:51.375Z",
+			"link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
+			"deskripsi_project": "f",
+			"invited_user_id": [],
+			"collaborator_user_id": ["winteraespa"],
+			"admin": "member"
+		},
+		{
+			"id": "Y6ZX97ZbU1BrYFfS",
+			"kategori_project": "Pengembangan Teknologi",
+			"nama_project": "Banking Innovation CoCreate Platform",
+			"tanggal_mulai": "2021-10-01T09:33:11.832Z",
+			"link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
+			"deskripsi_project": "fsdfsf",
+			"invited_user_id": [],
+			"collaborator_user_id": ["winteraespa"],
+			"admin": "member"
+		},
+		{
+			"id": "n34NWivtC_rqRe3b",
+			"kategori_project": "Sosial & Kemanusiaan",
+			"nama_project": "Makan makan ubi",
+			"tanggal_mulai": "2021-10-11T09:35:57.408Z",
+			"link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
+			"deskripsi_project": "fff",
+			"invited_user_id": [],
+			"collaborator_user_id": ["winteraespa"],
+			"admin": "member"
+		},
+		{
+			"id": "ZN9aUiqd11Kqezcw",
+			"kategori_project": "Sosial & Kemanusiaan",
+			"nama_project": "Makan makan ubi",
+			"tanggal_mulai": "2021-10-26T09:37:00.438Z",
+			"link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
+			"deskripsi_project": "f",
+			"invited_user_id": [],
+			"collaborator_user_id": [],
+			"admin": "member"
+		},
+		{
+			"id": "Fk6UclqfMKfy2PB-",
+			"kategori_project": "Sosial & Kemanusiaan",
+			"nama_project": "sosial",
+			"tanggal_mulai": "2021-10-13T07:14:35.516Z",
+			"link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
+			"deskripsi_project": "v",
+			"invited_user_id": ["winteraespa"],
+			"collaborator_user_id": [],
+			"admin": "member"
+		},
+		{
+			"id": "faeY-pmRU75sb0Eo",
+			"kategori_project": "Go Green",
+			"nama_project": "Makan makan ubi",
+			"tanggal_mulai": "2021-10-12T07:21:27.393Z",
+			"link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
+			"deskripsi_project": "vvx",
+			"invited_user_id": [],
+			"collaborator_user_id": ["member"],
+			"admin": "winteraespa"
+		},
+		{
+			"id": "aJPKFdYQuTK7N0Pe",
+			"kategori_project": "Pengembangan Teknologi",
+			"nama_project": "a",
+			"tanggal_mulai": "2021-10-13T13:13:08.895Z",
+			"link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
+			"deskripsi_project": "f",
+			"invited_user_id": ["winteraespa"],
+			"collaborator_user_id": [],
+			"admin": "member"
+		},
+		{
+			"id": "3EkWdQAiTG9R2dxr",
+			"kategori_project": "Sosial & Kemanusiaan",
+			"nama_project": "Makan makan ubi",
+			"tanggal_mulai": "2021-10-17T19:24:01.610Z",
+			"link_trello": "https://www.youtube.com/watch?v=QZng89VxKWg",
+			"deskripsi_project": "f",
+			"invited_user_id": ["winteraespa"],
+			"collaborator_user_id": [],
+			"admin": "member"
+		}
+	],
+	"artikel": [
+		{
+			"id": "kaGQteVAaAYEKW1N",
+			"posting_date": "2021-10-09T02:53:49.333Z",
+			"kategori": "Sosial & Kemanusiaan",
+			"judul": "ini ganti judul 1",
+			"isi_artikel": "qwerty",
+			"id_user": "winteraespa"
+		},
+		{
+			"id": "U4gJbZXdpSVQUsnv",
+			"posting_date": "2021-10-12T08:09:15.267Z",
+			"kategori": "Go Green",
+			"judul": "Demi",
+			"isi_artikel": "aku",
+			"id_user": "member"
+		},
+		{
+			"id": "8hi9K0OS4-jhobMg",
+			"posting_date": "2021-10-12T08:09:42.612Z",
+			"kategori": "Sosial & Kemanusiaan",
+			"judul": "Ini judul yang diedit",
+			"isi_artikel": "ffff",
+			"id_user": "member"
+		},
+		{
+			"id": "6xrDpHBdZmxRjWbq",
+			"posting_date": "2021-10-13T13:18:47.178Z",
+			"kategori": "Pengembangan Teknologi",
+			"judul": "Ini judul yang diedit",
+			"isi_artikel": "as",
+			"id_user": "member"
+		},
+		{
+			"id": "_BqubyxMVO5Wk7ok",
+			"posting_date": "2021-10-16T00:06:36.567Z",
+			"kategori": "Pengembangan Teknologi",
+			"judul": "dada",
+			"isi_artikel": "a",
+			"id_user": "member"
+		},
+		{
+			"id": "5Oo4b-cbapqHdRiz",
+			"posting_date": "2021-10-16T04:53:43.175Z",
+			"kategori": "Sosial & Kemanusiaan",
+			"judul": "ini ganti judul 1234",
+			"isi_artikel": "qwerty",
+			"id_user": "member"
+		},
+		{
+			"id": "5Oo4b-cbapqHdRsz",
+			"posting_date": "2021-10-16T04:53:43.175Z",
+			"kategori": "Sosial & Kemanusiaan",
+			"judul": "Judul hari ini",
+			"isi_artikel": "qwerty",
+			"id_user": "member"
+		}
+	]
 }

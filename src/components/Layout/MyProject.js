@@ -52,7 +52,7 @@ function MyProject() {
 				deleteProject(id);
 			},
 			onCancel() {
-				console.log("Cancel");
+				console.log("INi mau dicancel");
 			},
 		});
 	}
